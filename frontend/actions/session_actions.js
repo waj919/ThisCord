@@ -22,7 +22,7 @@ const receiveErrors = (errors) => {
   }
 };
 
- export const clearErrors = () => ({
+export const clearErrors = () => ({
     type: CLEAR_SESSION_ERRORS
 })
 
