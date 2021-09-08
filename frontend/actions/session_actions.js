@@ -28,8 +28,8 @@ export const clearErrors = () => ({
 
 export const login = user => dispatch => (
     sessionsAPI.login(user)
-    .then( res => { console.log(res); return dispatch(receiveCurrentUser(res))},
-    errors =>{return (dispatch(receiveErrors(errors.responseJSON)))})
+    .then( res => (dispatch(receiveCurrentUser(res))),
+    errors =>(dispatch(receiveErrors(errors.responseJSON))))
 );
 
 export const logout = () => dispatch => (
