@@ -58,6 +58,18 @@ class Splash extends React.Component {
                     <p id="content-3-header">Create an invite-only place where you belong</p>
                     <p id="content-3-body">Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</p>
                 </div>
+            </section>
+
+            <section id="splash-4">
+                <div id="content-4">
+                    <p id="content-4-header">RELIABLE TECH FOR STAYING CLOSE</p>
+                    <p id="content-4-body">Low-latency voice and video feels like you’re in the same room. Wave hello over video, watch friends stream their games, or gather up and have a drawing session with screen share. </p>
+                </div>
+
+                <img id="splash-img-4" src={window.splash_img4} alt="splash4" />
+
+                <img id="sparkles" src={window.sparkles} alt="" />
+                <p id="ready">Ready to start your journey?</p>
 
             </section>
 
