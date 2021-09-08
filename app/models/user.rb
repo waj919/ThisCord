@@ -21,10 +21,19 @@ class User < ApplicationRecord
     attr_reader :password
 
 
-    has_many :joined_servers,
+    has_many :owned_servers,
+        foreign_key: :creator_id,
+        class_name: :Server
+
+    has_many :user_servers,
         foreign_key: :user_id,
         class_name: :UserServers
 
+    has_many :joined_servers,
+        through: :user_servers,
+        source: :server
+
+    
 
 
 
