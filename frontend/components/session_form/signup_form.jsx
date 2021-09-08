@@ -45,39 +45,48 @@ class SignupForm extends React.Component {
 
     render(){
         return(
-            <div>
-                <br />
-                <header>
-                    Create an Account
-                    {this.renderErrors()}
-                </header>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Email:
-                        <input 
-                            type="text"  
-                            value={this.state.email}
-                            onChange={this.input('email')}
-                            />
-                    </label>
+            <div className="form">
+                <div className="signup-modal form-modal">
                     <br />
-                    <label>Username:
-                        <input 
-                            type="text"  
-                            value={this.state.username}
-                            onChange={this.input('username')}
-                            />
-                    </label>
-                    <br />
-                    <label>Password:
-                        <input 
-                            type="password"  
-                            value={this.state.password}
-                            onChange={this.input('password')}
-                            />
-                    </label>
-                    <input type="submit" value="Continue" />
-                </form>
-                <Link to="/login">Already have an account?</Link>
+                    <header className="welcome-message">
+                        Create an Account
+                    </header>
+                    <div className="errors">
+                        {this.renderErrors()}
+                    </div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label className="email-label">EMAIL
+                            <input 
+                                className="email-input"
+                                type="text"  
+                                value={this.state.email}
+                                onChange={this.input('email')}
+                                />
+                        </label>
+                        <br />
+                        <label className="user-label">USERNAME
+                            <input 
+                                className="user-input"
+                                type="text"  
+                                value={this.state.username}
+                                onChange={this.input('username')}
+                                />
+                        </label>
+                        <br />
+                        <label className="pw-label"> PASSWORD
+                            <input 
+                                className="pw-input"
+                                type="password"  
+                                value={this.state.password}
+                                onChange={this.input('password')}
+                                />
+                        </label>
+                        <input className="submit-button" type="submit" value="Continue" />
+                    </form>
+                    <p className="login-message">
+                        <Link className="link" to="/login">Already have an account?</Link>
+                        </p>
+                </div>
             </div>
         )
     }

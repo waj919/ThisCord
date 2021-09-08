@@ -44,31 +44,39 @@ class LoginForm extends React.Component {
 
     render(){
         return(
-            <div id="login">
-                <br />
-                <header>
-                    Welcome Back!
-                    {this.renderErrors()}
-                </header>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Email:
-                        <input 
-                            type="text"  
-                            value={this.state.email}
-                            onChange={this.input('email')}
-                            />
-                    </label>
-                    <br />
-                    <label>Password:
-                        <input 
-                            type="password"  
-                            value={this.state.password}
-                            onChange={this.input('password')}
-                            />
-                    </label>
-                    <input type="submit" value="Login" />
-                </form>
-                <p>Need an account? <Link to="/signup">Register</Link></p>
+            <div className="form">
+                <div className="form-modal">
+                    <header className="welcome-message">
+                        Welcome Back!
+                    </header>
+                    <p className="welcome-message-2"> We're so excited to see you again!</p>
+                    <div className="errors">
+                        {this.renderErrors()}
+                    </div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label className="email-label">EMAIL
+                        <br />  
+                            <input 
+                                className="email-input"
+                                type="text"  
+                                value={this.state.email}
+                                onChange={this.input('email')}
+                                />
+                        </label>
+                        <br />
+                        <label className="pw-label"> PASSWORD
+                            <input 
+                                className="pw-input"
+                                type="password"  
+                                value={this.state.password}
+                                onChange={this.input('password')}
+                                />
+                        </label>
+                        <input className="submit-button" type="submit" value="Login" />
+                    </form>
+                    <button id="demo-button" onClick={ () => this.props.login({email: "waj919@gmail.com", password: "123456"})}>DEMO USER</button>
+                    <p className="account-message">Need an account? <Link className="link" to="/signup">Register</Link></p>
+                </div>
             </div>
         )
     }

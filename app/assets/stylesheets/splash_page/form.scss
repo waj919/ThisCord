@@ -1,0 +1,92 @@
+.form {
+    background-image: image-url("login_wallpaper.png");
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+
+.form-modal{
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    display: inline-block;
+    background-color: #36393f;
+    height: 450px;
+    width: 500px;
+    border-radius: 10px;
+    padding: 40px 30px;
+    transition: all 150s ease-in;
+
+    .errors {
+        color: red;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .welcome-message{
+        font-family: 'Lato', sans-serif;
+        color: white;
+        font-size: 31px;
+        padding-bottom: 10px;
+    }
+    
+    .welcome-message-2 {
+        font-size: 17px;
+        color: #b9bbbe;
+        font-family: 'Lato', sans-serif;
+        padding-bottom: 20px;
+        
+    }
+    
+    .email-label, .user-label, .pw-label, .login-message, .account-message {
+        font-family: 'Lato', sans-serif;
+        color: #b9bbbe;
+        
+        .email-input, .user-input, .pw-input{
+            background-color: transparent;
+            width: 450px;
+            height: 20px;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid rgb(27, 27, 27);
+            color: white;
+        }
+        
+        
+    }
+    
+    .submit-button, #demo-button{
+        width: 475px;
+        height: 44px;
+        margin-bottom: 15px;
+        margin-top: 12px;
+        background-color: #4854c4;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 20px;
+        letter-spacing: 3px;
+        
+    }
+    
+    .link {
+        color: #05a5e4;
+        text-decoration: none;
+        
+        .link:hover {
+            text-decoration: underline;
+        }
+    }
+    
+}
+
+.signup-modal {
+    height: 450px;
+}
