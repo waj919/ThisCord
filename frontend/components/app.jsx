@@ -5,6 +5,7 @@ import LoginFormContainer from "./session_form/login_form_container"
 import SignupFormContainer from "./session_form/signup_form_container"
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Splash from './splash_page/splash_page';
+import ServerIndexContainer from './server/server_index_container';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
             <Route exact path="/" component={Splash} />
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
+            <ProtectedRoute path="/channel" component={ServerIndexContainer}/>
         </div>
     )
 }

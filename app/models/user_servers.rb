@@ -10,11 +10,11 @@
 #
 class UserServers < ApplicationRecord
 
-    validates :user_id, :creator_id, presence: true
+    validates :user_id, :server_id, presence: true
 
-    belongs_to :user,
+    belongs_to :user
        
-    belongs_to :server,
+    belongs_to :server
       
         
     
