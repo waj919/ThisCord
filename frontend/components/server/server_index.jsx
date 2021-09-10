@@ -94,10 +94,11 @@ class ServerIndex extends React.Component {
                     <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
                         <option value="" >Select your option</option>
                         {all.map(server => {
-                            return <option value={server.id}>{server.name}</option>
+                            return <option key={server.id} value={server.id}>{server.name}</option>
                         })}
                     </select>
-                    <input type="submit" value="Join Server"/>
+                    <br />
+                    <input id="join-button" type="submit" value="Join Server"/>
                 </form>
 
 

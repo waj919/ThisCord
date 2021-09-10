@@ -104,7 +104,7 @@
     display: flex;
 }
 
-#create-button{
+#create-button, #join-button {
     height: 35px;
     background-color: #5865f2;
     border: 1px solid #5865f2;
@@ -133,5 +133,11 @@
 
     #dropdown{
         overflow-x: scroll;
+        width: 405px;
+        height: 34px;
+        margin-top: 50px;
+        margin-bottom: 30px;
     }
+
+
 }
