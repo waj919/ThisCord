@@ -22,11 +22,15 @@
     font-size: 20px;
     background-color: #36393f;
     border: none;
-
+    
     a {
         text-decoration: none;
-        color: #cbccce
-        ;
+        color: #cbccce;
+        padding: 10px 10px;
+    }
+    .server-buttons:hover {
+        background-color: #5662e7;
+        border-radius: 10px;
     }
 }
 
@@ -40,13 +44,52 @@
   }
   
   .server-modal-main {
+
     position:fixed;
     background: white;
-    width: 80%;
-    height: auto;
+    width: 23%;
+    height: 24%;
+    border-radius: 17px;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
+
+    #close-button{
+        margin-left: 265px;
+        font-size: 36px;
+        padding-top: 13px;
+        cursor: pointer;
+        margin-top: 7px;
+
+    }
+
+    #server-label {
+        margin-left: 160px;
+        white-space: nowrap;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        padding-top: 15px;
+        margin-top: 10px;
+    }
+
+    p {
+        letter-spacing: 2px;
+        width: 97%;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        color: #777c84;
+        margin-top: 30px;
+    }
+
+    #server-input {
+        width: 88%;
+        height: 10%;
+        margin-right: 10px;
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
+
   }
   
   .show{
@@ -56,3 +99,28 @@
   .hide {
     display: none;
   }
+
+#server-header {
+    display: flex;
+}
+
+#create-button{
+    height: 35px;
+    background-color: #5865f2;
+    border: 1px solid #5865f2;
+    color: white;   
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+.fa-discord {
+    text-indent: -30px;
+}
+
+.fa-sign-out-alt {
+    text-indent: -7px;
+}
+  

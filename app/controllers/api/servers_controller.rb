@@ -14,7 +14,8 @@ class Api::ServersController < ApplicationController
         @server = Server.new(server_params)
         @server.creator_id = current_user.id
         @server.save
-
+        user_server = UserServers.new(user_id: current_user.id, server_id: @server.id)
+        user_server.save
         render "api/servers/show"
     end
 
