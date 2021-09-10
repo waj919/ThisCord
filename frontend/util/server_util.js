@@ -18,7 +18,8 @@ export const updateServer = (server) => {
     return $.ajax({
         method: "patch",
         url: `/api/servers/${server.id}`,
-        data: {server}
+        data: {server},
+        dataType: JSON
     })
 }
 
@@ -26,7 +27,7 @@ export const updateServer = (server) => {
 export const fetchServers = () => {
     return $.ajax({
         method: "get",
-        url: `/api/servers  `
+        url: `/api/servers`
     })
 }
 
@@ -42,5 +43,13 @@ export const fetchUserServers = (userId) => {
     return $.ajax({
         method: "get",
         url: `/api/users/${userId}`
+    })
+}
+
+export const createUserServer = (server_id) => {
+    return $.ajax({
+        method: "post",
+        url: "/api/user_servers",
+        data: {UserServers: {server_id}}
     })
 }

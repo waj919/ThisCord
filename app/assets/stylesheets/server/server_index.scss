@@ -43,7 +43,7 @@
     background: rgba(0, 0, 0, 0.6);
   }
   
-  .server-modal-main {
+  .server-modal-main, .server-modal-join {
 
     position:fixed;
     background: white;
@@ -54,7 +54,7 @@
     left:50%;
     transform: translate(-50%,-50%);
 
-    #close-button{
+    .close-button{
         margin-left: 265px;
         font-size: 36px;
         padding-top: 13px;
@@ -63,7 +63,7 @@
 
     }
 
-    #server-label {
+    .server-label {
         margin-left: 160px;
         white-space: nowrap;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -100,7 +100,7 @@
     display: none;
   }
 
-#server-header {
+.server-header {
     display: flex;
 }
 
@@ -123,4 +123,15 @@
 .fa-sign-out-alt {
     text-indent: -7px;
 }
-  
+
+
+.server-modal-join {
+
+    .close-button {
+        margin-left: 174px;
+    }
+
+    #dropdown{
+        overflow-x: scroll;
+    }
+}

@@ -8,13 +8,19 @@ class ServerIndex extends React.Component {
         super(props)
         this.state = {
             show: false,
-            name: ""
+            joinShow: false,
+            name: "",
+            allServers: [], 
+            value: "Please Select a Server"
         }
-
+        
+        // console.log(this.props.allServers);     
         this.showModal = this.showModal.bind(this)
         this.hideModal = this.hideModal.bind(this)
         this.input = this.input.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleJoinSubmit = this.handleJoinSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
 
     }
 
@@ -26,11 +32,19 @@ class ServerIndex extends React.Component {
         this.setState({ show: false });
     }
     
-
+    showJoinModal = () => {
+        this.setState({ joinShow: true });
+    }
+    
+    hideJoinModal = () => {
+        this.setState({ joinShow: false });
+    }
     componentDidMount(){
         this.props.fetchUserServers(this.props.currentUserId)
+        this.setState({
+            allServers: this.props.fetchServers()
+        })
     }
-
     
     input(e){
         e.preventDefault()
@@ -47,12 +61,50 @@ class ServerIndex extends React.Component {
         this.setState({
             show: false
         })
-        
+    }
+
+    handleChange(e){
+        this.setState({
+            value: e.currentTarget.value
+        })
+    }
+
+    handleJoinSubmit(e){
+        this.props.createUserServer(this.state.value)
+        this.setState({
+            joinShow: false
+        })
     }
 
 
-
     render(){
+        let join;
+        let all = this.state.allServers.responseJSON
+        if(all !== undefined) {
+            join = 
+            <div className= { this.state.joinShow ? "server-modal show" : "server-modal hide"}>
+                <form className="server-modal-join" onSubmit={this.handleJoinSubmit}>
+                    <div className="server-header">
+                        <p className="server-label">Join a Server!</p>
+
+                        <p className="close-button" onClick={this.hideJoinModal}>
+                            &times;
+                        </p>
+                    </div>
+                    <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
+                        <option value="" >Select your option</option>
+                        {all.map(server => {
+                            return <option value={server.id}>{server.name}</option>
+                        })}
+                    </select>
+                    <input type="submit" value="Join Server"/>
+                </form>
+
+
+            </div>
+        } else {
+            join = null;
+        }
         return(
             <div>
                 <ul id="server-index">
@@ -70,10 +122,10 @@ class ServerIndex extends React.Component {
                     <li>
                         <div className={this.state.show ? "server-modal show" : "server-modal hide"}>
                             <form className="server-modal-main" onSubmit={this.handleSubmit}>
-                                <div id="server-header">
-                                    <h1 id="server-label">Create a Server</h1>
+                                <div className="server-header">
+                                    <h1 className="server-label">Create a Server</h1>
                                     
-                                    <h1 id="close-button" onClick={this.hideModal}>
+                                    <h1 className="close-button" onClick={this.hideModal}>
                                         &times;
                                     </h1>
                                 </div>
@@ -94,8 +146,17 @@ class ServerIndex extends React.Component {
                             <i className="fas fa-sign-out-alt"></i>
                         </button>
                     </li>
+
+                    <li>
+                        {join}
+                        <button className="server-buttons" onClick={this.showJoinModal}>
+                            Join
+                        </button>
+                    </li>
                 </ul>
+
             </div>
+                
         )
     }
 }

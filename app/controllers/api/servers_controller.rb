@@ -2,8 +2,8 @@ class Api::ServersController < ApplicationController
 
 
     def index
-        @servers = Servers.all
-        render :index
+        @servers = Server.all
+        render "api/servers/index"
     end
 
     def show
