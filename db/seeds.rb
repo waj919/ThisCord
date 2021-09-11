@@ -37,6 +37,16 @@ user_servers = [
     [ 3, 2]
 ]
 
+channels = [
+    [1, "League Of Legends"],
+    [1, "Warzone"],
+    [2, "React"],
+    [3, "Naptime"],
+    [3, "Chilling"],
+    [4, "Javascript"],
+    [4, "Ruby"],
+]
+
 
 user.each do |username, email, password|
     User.create!( username: username, email: email, password: password)
@@ -48,4 +58,8 @@ end
 
 user_servers.each do |user_id, server_id| 
     UserServers.create!(user_id: user_id, server_id: server_id)
+end
+
+channels.each do |server_id, name|
+    Channel.create!(server_id: server_id, name: name)
 end

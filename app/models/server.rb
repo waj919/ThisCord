@@ -24,4 +24,8 @@ class Server < ApplicationRecord
         through: :user_servers,
         source: :user
         
+
+    has_many :channels,
+        foreign_key: :server_id,
+        class_name: :Channel
 end

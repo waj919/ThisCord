@@ -7,11 +7,16 @@ class ServerIndexItem extends React.Component {
         super(props)
     }
 
+
+
     render(){
+    
         return(
             <li>
                 <button className="server-buttons" >
-                    <Link id="server-links" to={`/channel/${this.props.server.id}`}>{this.props.server.name[0]}</Link>
+                    <Link id="server-links" to={`/channel/${this.props.server.id}`}>
+                        {this.props.server.name[0]}
+                    </Link>
                 </button>
             </li>
         )

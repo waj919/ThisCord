@@ -1,6 +1,8 @@
 import React from 'react';
 import ServerIndexItem from './server_index_item';
 import { Link } from "react-router-dom"
+import ChannelsIndexContainer from '../channels/channels_index_container';
+import ChannelsIndex from '../channels/channels_index';
 
 class ServerIndex extends React.Component {
 
@@ -118,7 +120,9 @@ class ServerIndex extends React.Component {
                         </button>
                     </li>
                     {this.props.servers.map(server => {
-                        return <ServerIndexItem key={server.id} server={server} />
+                        return <div>
+                                    <ServerIndexItem key={server.id} server={server} />
+                                </div>
                     })}
                     <li>
                         <div className={this.state.show ? "server-modal show" : "server-modal hide"}>
@@ -155,7 +159,8 @@ class ServerIndex extends React.Component {
                         </button>
                     </li>
                 </ul>
-
+                
+                <ChannelsIndex server={this.props.server} />
             </div>
                 
         )

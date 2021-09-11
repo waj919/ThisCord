@@ -3,12 +3,15 @@ import ServerIndex from "./server_index"
 import { createServer, fetchUserServers,  removeServer} from "../../actions/server_actions";
 import{ logout } from "../../actions/session_actions";
 import { createUserServer, fetchServers } from "../../util/server_util";
+import { fetchServerChannels } from "../../actions/channel_actions";
 
 
-const mSTP = (state) => {
+const mSTP = (state, ownProps) => {
+    debugger
     return {    
         servers: Object.values(state.entities.server),
-        currentUserId: state.session.currentUser.id
+        currentUserId: state.session.currentUser.id,
+        server: state.entities.server[ownProps.match.params.serverId]
     }
 }
 

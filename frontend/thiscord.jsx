@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import Root from "./components/root"
 import configureStore from "./store/store"
-import {login, signup} from "./actions/session_actions"
-import {createServer, removeServer} from "./actions/server_actions"
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -22,9 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     const store = configureStore(preloadedState)
-    window.createServer = createServer
-    window.removeServer = removeServer
+
     window.dispatch = store.dispatch
     window.getState = store.getState
     ReactDOM.render(<Root store={store} />, root )
+
+
 })
