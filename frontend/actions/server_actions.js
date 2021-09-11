@@ -48,3 +48,8 @@ export const removeServer = (serverId) => dispatch => {
     return serverUtil.deleteServer(serverId)
     .then( (server) => (dispatch(deleteServer(server))))
 }
+
+export const updateServer = (server) => dispatch => {
+    return serverUtil.updateServer(server)
+    .then( server => dispatch(receiveServer(server)))
+}

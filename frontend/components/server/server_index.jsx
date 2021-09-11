@@ -1,7 +1,6 @@
 import React from 'react';
 import ServerIndexItem from './server_index_item';
 import { Link } from "react-router-dom"
-import ChannelsIndexContainer from '../channels/channels_index_container';
 import ChannelsIndex from '../channels/channels_index';
 
 class ServerIndex extends React.Component {
@@ -16,7 +15,6 @@ class ServerIndex extends React.Component {
             value: "Please Select a Server"
         }
         
-        // console.log(this.props.allServers);     
         this.showModal = this.showModal.bind(this)
         this.hideModal = this.hideModal.bind(this)
         this.input = this.input.bind(this)
@@ -41,6 +39,7 @@ class ServerIndex extends React.Component {
     hideJoinModal = () => {
         this.setState({ joinShow: false });
     }
+
     componentDidMount(){
         this.props.fetchUserServers(this.props.currentUserId)
         this.setState({
@@ -109,7 +108,7 @@ class ServerIndex extends React.Component {
             join = null;
         }
         return(
-            <div>
+            <div className="container">
                 <ul id="server-index">
 
                     <li>
@@ -160,7 +159,11 @@ class ServerIndex extends React.Component {
                     </li>
                 </ul>
                 
-                <ChannelsIndex server={this.props.server} />
+                <ChannelsIndex 
+                    server={this.props.server} 
+                    createChannel={this.props.createChannel} 
+                    updateServer={this.props.updateServer}
+                />
             </div>
                 
         )

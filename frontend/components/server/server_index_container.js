@@ -1,13 +1,12 @@
 import { connect } from "react-redux";
 import ServerIndex from "./server_index"
-import { createServer, fetchUserServers,  removeServer} from "../../actions/server_actions";
+import { createServer, fetchUserServers,  removeServer, updateServer} from "../../actions/server_actions";
 import{ logout } from "../../actions/session_actions";
 import { createUserServer, fetchServers } from "../../util/server_util";
-import { fetchServerChannels } from "../../actions/channel_actions";
+import { createChannel, fetchServerChannels } from "../../actions/channel_actions";
 
 
 const mSTP = (state, ownProps) => {
-    debugger
     return {    
         servers: Object.values(state.entities.server),
         currentUserId: state.session.currentUser.id,
@@ -21,6 +20,8 @@ const mDTP = dispatch => ({
     fetchUserServers: userId => dispatch(fetchUserServers(userId)),
     createServer: server => dispatch(createServer(server)),
     removeServer: serverId => dispatch(removeServer(serverId)),
+    createChannel: channel => dispatch(createChannel(channel)),
+    updateServer: server => dispatch(updateServer(server)),
     logout: () => dispatch(logout())
 })
 

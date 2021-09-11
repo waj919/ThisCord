@@ -18,8 +18,7 @@ export const updateServer = (server) => {
     return $.ajax({
         method: "patch",
         url: `/api/servers/${server.id}`,
-        data: {server},
-        dataType: JSON
+        data: {server}
     })
 }
 

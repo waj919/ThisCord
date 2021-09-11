@@ -22,6 +22,8 @@ class Api::ServersController < ApplicationController
     def update
         @server = Server.find_by(id: params[:id])
         @server.update(server_params)
+
+        render "api/servers/show"
     end
 
     def destroy
