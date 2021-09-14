@@ -3,7 +3,7 @@ import * as serverUtil from "../util/server_util"
 
 export const RECEIVE_SERVERS = "RECEIVE_SERVERS"
 export const RECEIVE_SERVER = "RECEIVE_SERVER"
-export const REMOVE_SERVER = "CREATE_SERVER"
+export const REMOVE_SERVER = "REMOVE_SERVER"
 
 
 
@@ -22,6 +22,7 @@ const deleteServer = (server) => ({
     type: REMOVE_SERVER,
     server
 })
+
 
 export const fetchServers = () => dispatch => {
     return serverUtil.fetchServers()
@@ -52,4 +53,9 @@ export const removeServer = (serverId) => dispatch => {
 export const updateServer = (server) => dispatch => {
     return serverUtil.updateServer(server)
     .then( server => dispatch(receiveServer(server)))
+}
+
+export const leaveServer = (serverId) => (dispatch) => {
+    return serverUtil.leaveServer(serverId) 
+    .then( server => dispatch(deleteServer(server)))
 }

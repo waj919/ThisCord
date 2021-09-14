@@ -7,15 +7,48 @@ class ChannelsIndex extends React.Component {
         super(props)
         this.state = {
             name: "",
-            channelShow: false
+            channelShow: false,
+            show: false,
+            serverSettings: false
         }
 
         this.showModal = this.showModal.bind(this)
         this.hideModal = this.hideModal.bind(this)
         this.input = this.input.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-
+        this.handleUpdate = this.handleUpdate.bind(this)
+        this.serverSettingsDropdown = this.serverSettingsDropdown.bind(this)
+        this.serverSettings = this.serverSettings.bind(this)
+        this.deleteServer = this.deleteServer.bind(this)
+        this.leaveServer = this.leaveServer.bind(this)
     }
+
+    leaveServer(){
+        this.props.leaveServer(this.props.server.id)
+        this.props.history.push('channel/@me')
+        this.serverSettings();
+    }
+
+    deleteServer(){
+        this.props.removeServer(this.props.server.id)
+        this.props.history.push('channel/@me')
+        this.serverSettings();
+    }
+
+    serverSettingsDropdown(){
+    const action = !this.state.show;
+        this.setState({
+            show: action
+        })
+    }
+    
+    serverSettings(){
+        const action = !this.state.serverSettings;
+            this.setState({
+                show: false,
+                serverSettings: action
+            })
+        }
 
     showModal = () => {
         this.setState({ channelShow: true });
@@ -32,24 +65,84 @@ class ChannelsIndex extends React.Component {
         })
     }
 
+    handleUpdate(e){
+        let server = {
+            name: this.state.name,
+            id: this.props.server.id
+        }
+        this.props.updateServer(server)
+        this.serverSettings();
+    }
+
+
     handleSubmit(e){
         let channel = {
             server_id: this.props.server.id,
-            name: this.state.name,
+            name: this.state.name
         }
-        this.props.createChannel(channel)
         this.props.updateServer(this.props.server)
+        this.props.createChannel(channel)
         this.setState({
+            name: "",
             channelShow: false
         })
     }
 
+
     render(){
         if (this.props.server === undefined){ return null}
-      
         return(
             <div id="channels-index">
-                <p className="channel-server-name">{this.props.server.name}</p>
+                
+                <div id="server-name">
+                    <p className="channel-server-name">
+                        {this.props.server.name}
+                    </p>
+                    <div id="server-dropdown"  onClick={this.serverSettingsDropdown} >
+                        <i className="fas fa-chevron-down"></i>
+                        <ul id="dropdown-list" onClick={this.serverSettings} className={this.state.show ? "showSettings" : "hide"} >
+                            <li>Server Settings </li>
+                            <i className="fas fa-cog"></i>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div id="server-settings" className={this.state.serverSettings ? "grid" : "hide"}>
+                        <div id="left-container">
+                            <div id="server-settings-name">
+                                {this.props.server.name}
+                            </div>
+                            <ul id="settings-ul">
+                                <li>
+                                    Overview
+                                </li>
+                                <li onClick={this.leaveServer}> 
+                                    Leave Server
+                                </li>
+                                <li onClick={this.deleteServer}>
+                                    Delete Server
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="right-container">
+                                <form onSubmit={this.handleUpdate} id="server-settings-form">
+                                    <div>
+                                        <label>
+                                            EDIT SERVER
+                                        </label>
+                                        <div className="server-close-button" onClick={this.serverSettings}>
+                                            &times;
+                                        </div>
+                                    </div>
+                                        <input type="text" value={this.state.name} onChange={this.input} />
+                                        <button id="change-button">Change Server Name</button>
+                                </form>
+                        </div>
+                
+                </div>
+
 
                 <br />
                 
@@ -84,6 +177,12 @@ class ChannelsIndex extends React.Component {
                                 <br />
                                 <input id="create-button" type="submit" value="Create Channel" />
                             </form>
+                </div>
+
+                <div id="channel-footer">
+                    <img id="logo" src={window.logo} />
+                    <h1 id="username" >{this.props.name}</h1>
+                
                 </div>
             </div>
                  

@@ -22,12 +22,6 @@ const removeChannel = (channel) => ({
 
 
 
-export const fetchServerChannels = (serverId) => dispatch => {
-    return channelUtil.fetchServerChannels(serverId)
-    .then( (channels) => (dispatch(receiveChannels(channels))))
-}
-
-
 export const fetchChannel = (channel) => dispatch => {
     return channelUtil.fetchChannel(channel)
     .then( (channel) => (dispatch(receiveChannel(channel))))

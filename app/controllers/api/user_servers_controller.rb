@@ -6,6 +6,15 @@ class Api::UserServersController < ApplicationController
         @user_server.save
     end
 
+    def update
+        @user_server = UserServers.where(
+            user_servers_params).where(
+                user_id: current_user.id
+            )
+        @user_server[0].delete
+
+    end
+
 
     private
 

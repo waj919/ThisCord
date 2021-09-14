@@ -1,3 +1,7 @@
+body {
+    background-color: #36393f;
+}
+
 .container {
     display: flex;
 }
@@ -32,12 +36,12 @@
         color: #cbccce;
         padding: 10px 10px;
     }
-    .server-buttons:hover {
-        background-color: #5662e7;
-        border-radius: 10px;
-    }
 }
 
+.server-buttons:hover {
+    background-color: #5662e7;
+    border-radius: 10px;
+}
 .server-modal {
     position: fixed;
     top: 0;
@@ -143,5 +147,11 @@
         margin-bottom: 30px;
     }
 
+
+}
+
+#log-out {
+    position: fixed;
+    bottom: 50px;
 
 }

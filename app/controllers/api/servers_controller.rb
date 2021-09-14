@@ -14,6 +14,8 @@ class Api::ServersController < ApplicationController
         @server = Server.new(server_params)
         @server.creator_id = current_user.id
         @server.save
+        channel = Channel.new(name: "screw joe", server_id: @server.id)
+        channel.save
         user_server = UserServers.new(user_id: current_user.id, server_id: @server.id)
         user_server.save
         render "api/servers/show"
@@ -28,11 +30,12 @@ class Api::ServersController < ApplicationController
 
     def destroy
         @server = Server.find_by(id: params[:id])
+        @channels = @server.channels
         if @server.creator_id != current_user.id
             render json: ["Must be owner to delete server"], status: 400
-        else
-
+        else       
             @server.destroy
+            @channels.destroy
         end
     end
 

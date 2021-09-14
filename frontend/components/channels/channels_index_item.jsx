@@ -9,7 +9,7 @@ class ChannelsIndexItem extends React.Component {
 
     render(){
         return(
-               <Link className="channel-link" to={`/channels/${this.props.channel.server_id}/${this.props.channel.id}`}> 
+               <Link className="channel-link" to={`/channel/${this.props.channel.server_id}/${this.props.channel.id}`}> 
                     <div className="hashtag">
                         &#35;          
                     </div>

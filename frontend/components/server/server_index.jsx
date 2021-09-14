@@ -52,6 +52,7 @@ class ServerIndex extends React.Component {
         this.setState({
             name: e.currentTarget.value
         })
+        this.props.history.push(`/channel/${this.state.allServers}`)
     }
 
     handleSubmit(e){
@@ -119,9 +120,8 @@ class ServerIndex extends React.Component {
                         </button>
                     </li>
                     {this.props.servers.map(server => {
-                        return <div>
-                                    <ServerIndexItem key={server.id} server={server} />
-                                </div>
+                        return <ServerIndexItem key={server.id} server={server} />
+                                
                     })}
                     <li>
                         <div className={this.state.show ? "server-modal show" : "server-modal hide"}>
@@ -145,7 +145,7 @@ class ServerIndex extends React.Component {
                         </div>
                         <button className="server-buttons" onClick={this.showModal}> + </button>
                     </li>
-                    <li>
+                    <li id="log-out">
                         <button className="server-buttons logout-button" onClick={() => this.props.logout()}>
                             <i className="fas fa-sign-out-alt"></i>
                         </button>
@@ -163,6 +163,10 @@ class ServerIndex extends React.Component {
                     server={this.props.server} 
                     createChannel={this.props.createChannel} 
                     updateServer={this.props.updateServer}
+                    removeServer={this.props.removeServer}
+                    history={this.props.history}
+                    leaveServer={this.props.leaveServer}
+                    name={this.props.username}
                 />
             </div>
                 

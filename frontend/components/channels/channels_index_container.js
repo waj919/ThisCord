@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createChannel, fetchChannel, fetchServerChannels } from '../../actions/channel_actions';
+import { createChannel, fetchChannel,  } from '../../actions/channel_actions';
 
 import ChannelsIndex from "./channels_index"
 
@@ -14,7 +14,6 @@ const mSTP = (state, ownProps) => {
 }
 
 const mDTP = (dispatch) => ({
-    fetchServerChannels: serverId => dispatch(fetchServerChannels(serverId)),
     fetchChannel: channel => dispatch(fetchChannel(channel)),
     createChannel: channel => dispatch(createChannel(channel))
 })
