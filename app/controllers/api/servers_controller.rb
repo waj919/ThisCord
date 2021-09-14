@@ -14,7 +14,7 @@ class Api::ServersController < ApplicationController
         @server = Server.new(server_params)
         @server.creator_id = current_user.id
         @server.save
-        channel = Channel.new(name: "screw joe", server_id: @server.id)
+        channel = Channel.new(name: "general", server_id: @server.id)
         channel.save
         user_server = UserServers.new(user_id: current_user.id, server_id: @server.id)
         user_server.save
