@@ -1,0 +1,1 @@
+josn.extract! @message, :id, :channel_id, :body, :sender_id

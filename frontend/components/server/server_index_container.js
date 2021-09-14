@@ -3,7 +3,7 @@ import ServerIndex from "./server_index"
 import { createServer, fetchUserServers,  removeServer, updateServer, leaveServer} from "../../actions/server_actions";
 import { createUserServer, fetchServers } from "../../util/server_util";
 import{ logout } from "../../actions/session_actions";
-import { createChannel, updateChannel } from "../../actions/channel_actions";
+import { createChannel, fetchServerChannels, updateChannel } from "../../actions/channel_actions";
 
 
 const mSTP = (state, ownProps) => {
@@ -19,6 +19,7 @@ const mDTP = dispatch => ({
     createUserServer: serverId => createUserServer(serverId),
     fetchServers: () => fetchServers(),
     fetchUserServers: userId => dispatch(fetchUserServers(userId)),
+    // fetchServerChannels: serverId => dispatch(fetchServerChannels(serverId)),
     createServer: server => dispatch(createServer(server)),
     removeServer: serverId => dispatch(removeServer(serverId)),
     leaveServer: serverId => dispatch(leaveServer(serverId)),

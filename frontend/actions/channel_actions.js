@@ -43,3 +43,8 @@ export const updateChannel = channel => dispatch => {
     .then( channel => dispatch(receiveChannel(channel)))
 }
 
+export const fetchServerChannels = serverId => dispatch => {
+    return channelUtil.fetchServerChannels(serverId) 
+    .then( channels => dispatch(receiveChannels(channels)))
+}
+

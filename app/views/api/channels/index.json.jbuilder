@@ -1,5 +1,5 @@
-json.array! @channels do |channel|
-    json.id channel.id
-    json.server_id channel.server_id
-    json.name channel.name 
+@channels.each do |channel|
+    json.set! channel.id do
+        json.extract! channel, :id, :server_id, :messages
+    end
 end
