@@ -15,7 +15,7 @@
         justify-content: space-between;
         border-bottom: 1px #232527 solid;
 
-
+        
         #server-dropdown {
             width: 50px;
             // left: 312px;
@@ -23,7 +23,8 @@
             align-self: center;
             position: relative;
             cursor: pointer;
-
+            
+            
             #dropdown-list {
                 width: 240px;
                 height: 40px;
@@ -33,7 +34,6 @@
                 transform: translate(-205px,25px);
                 align-items: center;
                 padding: 5px;
-                
                 
                 
                 li {
@@ -214,6 +214,7 @@
 
 .showSettings {
     display: flex;
+    
 }
 
 .grid {
