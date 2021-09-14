@@ -5,7 +5,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: 268px;
+    width: 288px;
     background-color: #2f3136;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #888a91;
@@ -94,6 +94,7 @@
         #plus {
             font-size: 30px;
             cursor: pointer;
+            padding-left: 19px;
         }
 
     }
@@ -115,8 +116,9 @@
         .channel-li {
             padding-top: 10px;
             padding-left: 10px;
-            padding-bottom: 30px;
-            width: 223px;
+            width: 248px;
+
+            
         }
     }
 
@@ -126,9 +128,18 @@
 .channel-li:hover {
     background-color: #34373c;
     border-radius: 7px;
+
+}
+
+.channel-li > div > a > .channel-cog {
+    color: #2f3136;
+}
+.channel-li:hover > div > a > .channel-cog{
+    color: white;
 }
 
 .channel-modal {
+        z-index: 1;
         position: fixed;
         top: 0;
         left: 0;
@@ -173,9 +184,12 @@
             margin-right: 10px;
             margin-top: 20px;
             margin-bottom: 25px;
-            margin-left: 33px
-
+            margin-left: 33px;
+            padding-left: 5px;
+            border: 1px solid black;
         }
+
+
 
         .channel-header {
             display: flex;
@@ -190,7 +204,7 @@
     
         }
     
-        #create-button {
+        .create-button {
             margin-left: 200px;
         }
         
@@ -207,6 +221,7 @@
 }
 
 #server-settings {
+    z-index: 1;
     position: fixed;
     width: 100vw;
     top: 0;
@@ -343,4 +358,71 @@
         font-weight: bold;
         padding-top: 10px;
     }
+}
+
+.channel-cog{
+    transform: translate(201px, -17px);
+    padding-left: 23px;
+}
+
+.hide-cog {
+    display: none;
+}
+
+.show-cog {
+    display: block;
+}
+
+.channel-modal-edit {
+    position:fixed;
+    background: white;
+    border-radius: 17px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 209px;
+}
+
+.edit-header {
+    display: flex;
+
+    .edit-label {
+        margin-left: 86px;
+        white-space: nowrap;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        padding-top: 15px;
+        margin-top: 10px;
+    }
+
+    .edit-close-button {
+        font-size: 36px;
+        padding-top: 16px;
+        cursor: pointer;
+        margin-top: 7px;
+        margin-right: 25px;
+        text-align: end;
+    }
+
+    
+}
+.edit-input{
+    
+    width: 88%;
+    height: 10%;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-left: 23px;
+    padding-left: 5px;
+    border: 1px solid black;
+}
+
+.edit-button {
+    position: fixed;
+    left: 154px;
+    cursor: pointer;
 }

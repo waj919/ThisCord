@@ -23,6 +23,10 @@ class ChannelsIndex extends React.Component {
         this.leaveServer = this.leaveServer.bind(this)
     }
 
+    
+    
+    
+
     leaveServer(){
         this.props.leaveServer(this.props.server.id)
         this.props.history.push('channel/@me')
@@ -91,6 +95,7 @@ class ChannelsIndex extends React.Component {
 
     render(){
         if (this.props.server === undefined){ return null}
+      
         return(
             <div id="channels-index">
                 
@@ -153,12 +158,19 @@ class ChannelsIndex extends React.Component {
                 <ul id="channels-list">
                     {this.props.server.channels.map(channel => {
                         return <li className="channel-li" key={channel.id}>
-                                    <ChannelsIndexItem  
-                                        channel={channel}
-                                    />
+                                        <ChannelsIndexItem  
+                                            channel={channel}
+                                            updateChannel={this.props.updateChannel}
+                                        />
                                 </li>
                     })} 
                 </ul>
+
+                <div id="channel-footer">
+                    <img id="logo" src={window.logo} />
+                    <h1 id="username" >{this.props.name}</h1>
+                
+                </div>
                 <div className={this.state.channelShow ? "channel-modal show" : "channel-modal hide"}>
                             <form className="channel-modal-main" onSubmit={this.handleSubmit}>
                                 <div className="channel-header">
@@ -175,14 +187,8 @@ class ChannelsIndex extends React.Component {
                                 <input id="channel-input" type="text" onChange={this.input}/>
                             
                                 <br />
-                                <input id="create-button" type="submit" value="Create Channel" />
+                                <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>
                             </form>
-                </div>
-
-                <div id="channel-footer">
-                    <img id="logo" src={window.logo} />
-                    <h1 id="username" >{this.props.name}</h1>
-                
                 </div>
             </div>
                  

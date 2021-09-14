@@ -61,6 +61,7 @@ class ServerIndex extends React.Component {
         }
         this.props.createServer(server)
         this.setState({
+            name: "",
             show: false
         })
     }
@@ -140,7 +141,7 @@ class ServerIndex extends React.Component {
                                 <input id="server-input" type="text" onChange={this.input}/>
                             
                                 <br />
-                                <input id="create-button" type="submit" value="Create Server" />
+                                <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false }> Create Server</button>
                             </form>
                         </div>
                         <button className="server-buttons" onClick={this.showModal}> + </button>
@@ -167,6 +168,7 @@ class ServerIndex extends React.Component {
                     history={this.props.history}
                     leaveServer={this.props.leaveServer}
                     name={this.props.username}
+                    updateChannel={this.props.updateChannel}
                 />
             </div>
                 

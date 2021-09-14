@@ -82,6 +82,9 @@
     cursor: pointer;
 }
 
+#splash-1, #splash-3 {
+    background-color: white;
+}
 #splash-1, #content-1, #splash-2, #content-2, #splash-3, #content-3{
     display: flex;
     height: 600px;

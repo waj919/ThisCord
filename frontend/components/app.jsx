@@ -6,7 +6,6 @@ import SignupFormContainer from "./session_form/signup_form_container"
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Splash from './splash_page/splash_page';
 import ServerIndexContainer from './server/server_index_container';
-import ChannelsIndexContainer from './channels/channels_index_container';
 
 
 const App = () => {

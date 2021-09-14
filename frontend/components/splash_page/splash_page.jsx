@@ -6,6 +6,7 @@ class Splash extends React.Component {
     }
 
     render(){
+
         return(
             <div>
                 <main id="splash">

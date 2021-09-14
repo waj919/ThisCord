@@ -19,6 +19,8 @@ class Api::ChannelsController < ApplicationController
     def update
         @channel = Channel.find_by(id: params[:id])
         @channel.update(channel_params)
+
+        render "/api/channels/show"
     end
 
     def destroy

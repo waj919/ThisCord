@@ -28,6 +28,7 @@ body {
     height: 48px;
     cursor: pointer;
     font-size: 20px;
+    color: white;
     background-color: #36393f;
     border: none;
     
@@ -43,6 +44,7 @@ body {
     border-radius: 10px;
 }
 .server-modal {
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
@@ -52,33 +54,34 @@ body {
   }
   
   .server-modal-main, .server-modal-join {
-
     position:fixed;
     background: white;
-    width: 23%;
-    height: 24%;
+    width: 568px;
+    height: 246px;
     border-radius: 17px;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
 
     .close-button{
-        margin-left: 265px;
+        margin-left: 145px;
         font-size: 36px;
         padding-top: 13px;
         cursor: pointer;
         margin-top: 7px;
+        font-weight: bolder;
 
     }
 
     .server-label {
-        margin-left: 160px;
+        margin-left: 200px;
         white-space: nowrap;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         font-weight: 700;
         font-size: 24px;
         line-height: 30px;
         padding-top: 15px;
+        color: black;
         margin-top: 10px;
     }
 
@@ -112,7 +115,7 @@ body {
     display: flex;
 }
 
-#create-button, #join-button {
+.create-button, #join-button, .no-submit, .edit-button {
     height: 35px;
     background-color: #5865f2;
     border: 1px solid #5865f2;
@@ -120,6 +123,7 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     border-radius: 10px;
     cursor: pointer;
+    
 }
 
 
@@ -136,7 +140,8 @@ body {
 .server-modal-join {
 
     .close-button {
-        margin-left: 174px;
+        margin-left: 100px;
+        color: black;
     }
 
     #dropdown{
@@ -153,5 +158,10 @@ body {
 #log-out {
     position: fixed;
     bottom: 50px;
-
 }
+
+.no-submit{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
