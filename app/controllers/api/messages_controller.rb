@@ -12,7 +12,7 @@ class Api::MessagesController < ApplicationController
 
     def create
         @message = Message.new(messages_params)
-        @message.create
+        @message.save
         render "api/messages/show"
     end
 
@@ -22,13 +22,14 @@ class Api::MessagesController < ApplicationController
     end
 
     def destroy
-
+        @message = Message.find_by(id: params[:id])
+        @message.destroy
     end
 
     private
 
     def messages_params 
-        params.require(:messages).require(:server_id, :sender_id, :chat_id, :channel_id)
+        params.require(:message).permit(:sender_id, :body, :channel_id)
     end
 
 end

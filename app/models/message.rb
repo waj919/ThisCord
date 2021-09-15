@@ -11,7 +11,7 @@
 #
 class Message < ApplicationRecord
 
-    validates :server_id, :chat_id, :channel_id, :sender_id, presence: true
+    validates :body, :channel_id, :sender_id, presence: true
 
     belongs_to :channel 
 
