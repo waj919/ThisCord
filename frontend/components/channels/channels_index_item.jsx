@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom" 
+import MessageIndex from '../messages/messages_index';
 
 
 class ChannelsIndexItem extends React.Component {
@@ -12,7 +13,9 @@ class ChannelsIndexItem extends React.Component {
         this.showModal = this.showModal.bind(this)
         this.input = this.input.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+       
     }
+
 
     input(e){
         e.preventDefault()

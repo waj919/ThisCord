@@ -12,6 +12,7 @@ class Api::MessagesController < ApplicationController
 
     def create
         @message = Message.new(messages_params)
+        @message.sender_id = current_user.id
         @message.save
         render "api/messages/show"
     end

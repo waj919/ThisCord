@@ -22,8 +22,8 @@ const removeChannel = (channel) => ({
 
 
 
-export const fetchChannel = (channel) => dispatch => {
-    return channelUtil.fetchChannel(channel)
+export const fetchChannel = (channelId) => dispatch => {
+    return channelUtil.fetchChannel(channelId)
     .then( (channel) => (dispatch(receiveChannel(channel))))
 }
 

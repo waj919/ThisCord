@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavBarContainer from "./nav_bar/nav_bar_container"
 import LoginFormContainer from "./session_form/login_form_container"
 import SignupFormContainer from "./session_form/signup_form_container"
@@ -16,9 +16,13 @@ const App = () => {
             <Route exact path="/" component={Splash} />
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
-            <ProtectedRoute path="/channel/" component={ServerIndexContainer}/>
-            <ProtectedRoute path="/channel/:serverId" component={ServerIndexContainer}/>
-            <ProtectedRoute path="/channel/:serverId/:channelId" component={ServerIndexContainer}/>
+            <Switch>
+
+                <ProtectedRoute exact path="/channel/:serverId/:channelId" component={ServerIndexContainer}/>
+                <ProtectedRoute exact path="/channel/:serverId" component={ServerIndexContainer}/>
+                <ProtectedRoute exact path="/channel/@me" component={ServerIndexContainer}/>
+
+            </Switch>
 
         </div>
     )

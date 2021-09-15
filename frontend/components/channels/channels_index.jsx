@@ -23,9 +23,8 @@ class ChannelsIndex extends React.Component {
         this.leaveServer = this.leaveServer.bind(this)
     }
 
-    
-    
-    
+   
+ 
 
     leaveServer(){
         this.props.leaveServer(this.props.server.id)
@@ -95,7 +94,6 @@ class ChannelsIndex extends React.Component {
 
     render(){
         if (this.props.server === undefined){ return null}
-      
         return(
             <div id="channels-index">
                 
@@ -111,6 +109,8 @@ class ChannelsIndex extends React.Component {
                         </ul>
                     </div>
 
+                   
+             
                 </div>
 
                 <div id="server-settings" className={this.state.serverSettings ? "grid" : "hide"}>
@@ -158,7 +158,7 @@ class ChannelsIndex extends React.Component {
                 <ul id="channels-list">
                     {this.props.server.channels.map(channel => {
                         return <li className="channel-li" key={channel.id}>
-                                        <ChannelsIndexItem  
+                                        <ChannelsIndexItem 
                                             channel={channel}
                                             updateChannel={this.props.updateChannel}
                                         />

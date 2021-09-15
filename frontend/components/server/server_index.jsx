@@ -2,6 +2,7 @@ import React from 'react';
 import ServerIndexItem from './server_index_item';
 import { Link } from "react-router-dom"
 import ChannelsIndex from '../channels/channels_index';
+import MessageIndex from '../messages/messages_index';
 
 class ServerIndex extends React.Component {
 
@@ -14,6 +15,7 @@ class ServerIndex extends React.Component {
             allServers: [], 
             value: "Please Select a Server"
         }
+        
         
         this.showModal = this.showModal.bind(this)
         this.hideModal = this.hideModal.bind(this)
@@ -42,9 +44,19 @@ class ServerIndex extends React.Component {
 
     componentDidMount(){
         this.props.fetchUserServers(this.props.currentUserId)
+        if(this.props.channelId) {
+            this.props.fetchMessages(this.props.channelId)
+        }
         this.setState({
             allServers: this.props.fetchServers()
         })
+        
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.channelId !== this.props.channelId){
+            this.props.fetchMessages(this.props.channelId)
+        }
     }
     
     input(e){
@@ -169,8 +181,15 @@ class ServerIndex extends React.Component {
                     leaveServer={this.props.leaveServer}
                     name={this.props.username}
                     updateChannel={this.props.updateChannel}
+                    fetchMessages={this.props.fetchMessages}
+                    channelId ={this.props.channelId}
                 />
+
+                <MessageIndex messages={this.props.messages} username={this.props.username} channelId={this.props.channelId} createMessage={this.props.createMessage}/>
+
             </div>
+
+
                 
         )
     }
