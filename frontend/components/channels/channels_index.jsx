@@ -58,7 +58,10 @@ class ChannelsIndex extends React.Component {
     }
     
     hideModal = () => {
-        this.setState({ channelShow: false });
+        this.setState({ 
+            name: "",
+            channelShow: false
+        });
     }
 
     input(e){
@@ -186,7 +189,10 @@ class ChannelsIndex extends React.Component {
                                 <p>
                                     Your channel is where you and your friends hang out.Make yours and start talking.
                                 </p>
-                                <input id="channel-input" type="text" onChange={this.input}/>
+                                <div className="input-hashtag">
+                                    &#35;          
+                                </div>
+                                <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input}/>
                             
                                 <br />
                                 <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>

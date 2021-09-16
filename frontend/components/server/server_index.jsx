@@ -125,7 +125,7 @@ class ServerIndex extends React.Component {
             <div className="container">
                 <ul id="server-index">
 
-                    <li>
+                    <li className="me">
                         <button className="server-buttons">
                             <Link  to="/channel/@me">
                                 <i className="fab fa-discord"></i>

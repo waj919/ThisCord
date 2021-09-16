@@ -19,6 +19,8 @@
     border-radius: 10px;
     background: #40444b;
     color: white;
+    border: none;
+    text-indent: 10px;
 }
 
 *:focus{
@@ -101,6 +103,11 @@
         padding-left: 21px;
         color: #72767d;
     }
+
+    .message-channel-name {
+        font-size: 21px;
+        align-self: center;
+    }
 }
 
 
@@ -136,5 +143,16 @@
     .members-logo{
         height: 30px;
         width: 30px;
+    }
+}
+
+
+.chat {
+    display: flex;
+    gap: 15px;
+
+    img {
+        height: 35px;
+        width: 35px;
     }
 }

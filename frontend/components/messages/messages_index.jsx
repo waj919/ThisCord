@@ -32,7 +32,11 @@ class MessageIndex extends React.Component {
                             return <MessageItem key={message.id} message={message} username={this.props.username}/>
                         })}         
                     </ul>
-                    <MessageForm createMessage={this.props.createMessage} channelId={this.props.channelId} />
+                    <MessageForm 
+                        createMessage={this.props.createMessage} 
+                        channelId={this.props.channelId} 
+                        channelName={this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)].name}
+                    />
                 </div>
 
             

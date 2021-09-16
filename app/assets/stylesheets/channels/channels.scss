@@ -26,12 +26,12 @@
             
             
             #dropdown-list {
-                width: 240px;
+                width: 256px;
                 height: 40px;
                 border-radius: 9px;
                 position: absolute;
-                background-color: #18191c;                
-                transform: translate(-205px,25px);
+                background-color: #18191c;
+                transform: translate(-227px, 25px);
                 align-items: center;
                 padding: 5px;
                 
@@ -151,9 +151,9 @@
         .channel-modal-main, .channel-modal-join {
 
             position:fixed;
-            background: white;
+            background: #383c3c;
             width: 501px;
-            height: 250px;
+            height: 270px;
             border-radius: 17px;
             top:50%;
             left:50%;
@@ -168,26 +168,30 @@
             line-height: 30px;
             padding-top: 15px;
             margin-top: 10px;
+            color: white;
         }
 
         p {
             letter-spacing: 2px;
             width: 97%;
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-            color: #777c84;
+            color: white;
             margin-top: 30px;
             margin-left: 33px
         }
 
         #channel-input {
             width: 88%;
-            height: 10%;
+            height: 12%;
+            background-color: #303339;
             margin-right: 10px;
+            color: white;
             margin-top: 20px;
             margin-bottom: 25px;
+            border: 1px solid #222428;
             margin-left: 33px;
             padding-left: 5px;
-            border: 1px solid black;
+            text-indent: 15px;
         }
 
 
@@ -213,6 +217,10 @@
         
 }
 
+.input-hashtag {
+    width: 10px;
+    transform: translate(40px, 46px);
+}
 .showSettings {
     display: flex;
     
@@ -299,6 +307,7 @@
                 text-indent: 10px;
                 border-radius: 5px;
                 height: 40px;
+                border: none;
                 width: 320px;
                 margin: 10px 0px;
                 background-color: #303339;
