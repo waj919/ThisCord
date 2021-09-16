@@ -162,6 +162,7 @@ class ChannelsIndex extends React.Component {
                                         <ChannelsIndexItem 
                                             channel={channel}
                                             updateChannel={this.props.updateChannel}
+                                            deleteChannel={this.props.deleteChannel}
                                         />
                                 </li>
                     })} 

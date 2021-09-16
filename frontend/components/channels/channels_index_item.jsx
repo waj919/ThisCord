@@ -13,7 +13,16 @@ class ChannelsIndexItem extends React.Component {
         this.showModal = this.showModal.bind(this)
         this.input = this.input.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
        
+    }
+
+    handleDelete(){
+        this.props.deleteChannel(this.props.channel.id)
+        this.setState({
+            name: "",
+            show: false
+        })
     }
 
 
@@ -74,6 +83,7 @@ class ChannelsIndexItem extends React.Component {
                             <br />
                             <input type="submit" className="edit-button" value="Edit Channel" />
                     </form>
+                            <button onClick={this.handleDelete} className="delete-button">Delete Channel</button>
                 </div>
             </div>
         )

@@ -181,6 +181,7 @@ class ServerIndex extends React.Component {
                     leaveServer={this.props.leaveServer}
                     name={this.props.username}
                     updateChannel={this.props.updateChannel}
+                    deleteChannel={this.props.deleteChannel}
                     fetchMessages={this.props.fetchMessages}
                     channelId ={this.props.channelId}
                 />

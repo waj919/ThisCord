@@ -3,7 +3,7 @@ import ServerIndex from "./server_index"
 import { createServer, fetchUserServers,  removeServer, updateServer, leaveServer} from "../../actions/server_actions";
 import { createUserServer, fetchServers } from "../../util/server_util";
 import{ logout } from "../../actions/session_actions";
-import { createChannel, fetchChannel, fetchServerChannels, updateChannel } from "../../actions/channel_actions";
+import { createChannel, fetchChannel, updateChannel, deleteChannel } from "../../actions/channel_actions";
 import { createMessage, fetchMessages } from "../../actions/message_actions";
 
 
@@ -28,6 +28,7 @@ const mDTP = dispatch => ({
     removeServer: serverId => dispatch(removeServer(serverId)),
     leaveServer: serverId => dispatch(leaveServer(serverId)),
     createChannel: channel => dispatch(createChannel(channel)),
+    deleteChannel: channelId => dispatch(deleteChannel(channelId)),
     updateServer: server => dispatch(updateServer(server)),
     updateChannel: channel => dispatch(updateChannel(channel)),
     logout: () => dispatch(logout())
