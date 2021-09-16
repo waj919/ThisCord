@@ -32,7 +32,6 @@ class ChannelsIndexItem extends React.Component {
     }
 
     handleSubmit(){
-        debugger
         let channel = {
             id: this.props.channel.id,
             name: this.state.name
@@ -43,12 +42,14 @@ class ChannelsIndexItem extends React.Component {
             show: false
         })
     }
+    
+
 
 
     render(){
         return(
             <div>
-               <Link className="channel-link" to={`/channel/${this.props.channel.server_id}/${this.props.channel.id}`}> 
+               <Link onClick={this.handleClick} className="channel-link" to={`/channel/${this.props.channel.server_id}/${this.props.channel.id}`}> 
                     <div className="hashtag">
                         &#35;          
                     </div>

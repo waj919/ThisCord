@@ -94,6 +94,7 @@ class ChannelsIndex extends React.Component {
 
     render(){
         if (this.props.server === undefined){ return null}
+        
         return(
             <div id="channels-index">
                 
@@ -189,6 +190,20 @@ class ChannelsIndex extends React.Component {
                                 <br />
                                 <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>
                             </form>
+                </div>
+
+                <div className="members">
+                    <div className="members-header">
+                        Members
+                    </div>
+                    <ul className="members-ul">
+                        {this.props.server.users.map(user => {
+                            return  <li key={user.id} className="member-li">
+                                        <img src={window.logo} className="members-logo"/>
+                                        {user.username}
+                                    </li>
+                        })}
+                    </ul>
                 </div>
             </div>
                  

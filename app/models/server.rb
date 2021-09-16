@@ -20,7 +20,7 @@ class Server < ApplicationRecord
         foreign_key: :server_id,
         class_name: :UserServers
 
-    has_many :user,
+    has_many :users,
         through: :user_servers,
         source: :user
         

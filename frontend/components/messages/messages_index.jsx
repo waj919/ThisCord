@@ -14,7 +14,6 @@ class MessageIndex extends React.Component {
     render(){
         if(!this.props.messages) return null;
         if(!this.props.server) return null;
-        // debugger
         return(
 
 
@@ -25,7 +24,7 @@ class MessageIndex extends React.Component {
                             &#35;          
                         </div>
                         <div className="message-channel-name">
-                            {/* {this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)].name} */}
+                            {this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)].name}
                         </div>
                     </div>
                     <ul className="message-ul">
