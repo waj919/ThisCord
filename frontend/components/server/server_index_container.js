@@ -13,7 +13,7 @@ const mSTP = (state, ownProps) => {
         currentUserId: state.session.currentUser.id,
         username: state.session.currentUser.username,
         server: state.entities.server[ownProps.match.params.serverId],
-        channelId: ownProps.match.params.channelId,
+        channelId: parseInt(ownProps.match.params.channelId),
         messages: Object.values(state.entities.message),
     }
 }

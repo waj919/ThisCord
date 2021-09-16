@@ -1,4 +1,5 @@
 import React from 'react';
+import consumer from "../../consumer"
 
 class MessageForm extends React.Component {
     constructor(props){
@@ -8,9 +9,42 @@ class MessageForm extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.input = this.input.bind(this)
+
+        this.subscription = null
     }
 
-    input(e){
+    componentDidMount() {
+        this.subscribe()
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.channelId !== this.props.channelId){
+            this.subscription.unsubscribe()
+            this.subscribe();
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+        }
+    }
+
+ 
+
+    subscribe() {
+        const channelId = this.props.channelId
+        this.subscription = consumer.subscriptions.create(
+          { channel: 'TextChannel', id: channelId },
+          {
+            received: data => {
+                this.props.createMessage(data.message)
+            },
+          }
+        )
+    }
+
+   input(e){
         e.preventDefault();
         this.setState({
             body: e.currentTarget.value
@@ -19,12 +53,12 @@ class MessageForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        let message = {
-            body: this.state.body,
-            channel_id: this.props.channelId
-        }
-
-        this.props.createMessage(message)
+        this.subscription.send({
+            message: {
+                body: this.state.body,
+                channel_id: this.props.channelId
+            }
+        })
         this.setState({
             body: ""
         })

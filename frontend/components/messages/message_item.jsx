@@ -18,7 +18,11 @@ class MessageItem extends React.Component {
                         {this.props.message.sender.username} 
                     </p>
                     <p className="message-time">
-                        {/* {this.month}/{this.day}/{this.year} at {this.time} */}
+                       {this.props.message.created_at.slice(5,7)}/
+                       {this.props.message.created_at.slice(8,10)}/
+                       {this.props.message.created_at.slice(0,4)} at &nbsp;
+                       {this.props.message.created_at.slice(11, 16)}
+
                     </p>
                 </div>
                 <div className="message-content">

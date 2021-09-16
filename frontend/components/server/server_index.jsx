@@ -185,7 +185,15 @@ class ServerIndex extends React.Component {
                     channelId ={this.props.channelId}
                 />
 
-                <MessageIndex messages={this.props.messages} username={this.props.username} channelId={this.props.channelId} createMessage={this.props.createMessage}/>
+                <MessageIndex 
+                    messages={this.props.messages} 
+                    username={this.props.username} 
+                    channelId={this.props.channelId} 
+                    createMessage={this.props.createMessage}
+                    // channel={this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)]}
+                    server={this.props.server}
+                />
+
 
             </div>
 

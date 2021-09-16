@@ -13,15 +13,31 @@ class MessageIndex extends React.Component {
 
     render(){
         if(!this.props.messages) return null;
+        if(!this.props.server) return null;
+        // debugger
         return(
-            <div className="messages">
-                <ul className="message-ul">
-                    {this.props.messages.map(message => {
-                        return <MessageItem key={message.id} message={message} username={this.props.username}/>
-                    })}         
-                </ul>
-                <MessageForm createMessage={this.props.createMessage} channelId={this.props.channelId} />
-            </div>
+
+
+                <div className="messages">
+            
+                    <div className="message-channel-header">
+                        <div className="message-hashtag">
+                            &#35;          
+                        </div>
+                        <div className="message-channel-name">
+                            {/* {this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)].name} */}
+                        </div>
+                    </div>
+                    <ul className="message-ul">
+                        {this.props.messages.reverse().map(message => {
+                            return <MessageItem key={message.id} message={message} username={this.props.username}/>
+                        })}         
+                    </ul>
+                    <MessageForm createMessage={this.props.createMessage} channelId={this.props.channelId} />
+                </div>
+
+            
+
         )
     }
 
