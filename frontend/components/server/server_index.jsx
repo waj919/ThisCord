@@ -204,6 +204,8 @@ class ServerIndex extends React.Component {
                     channelId={this.props.channelId} 
                     createMessage={this.props.createMessage}
                     server={this.props.server}
+                    deleteMessage={this.props.deleteMessage}
+                    updateMessage={this.props.updateMessage}
                 />
 
                 <DmIndex 

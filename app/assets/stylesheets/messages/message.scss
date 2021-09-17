@@ -42,6 +42,7 @@
     // padding-left: 40px;
 
     li, .dm-messages-li {
+        display: flex;
         font-size: 21px;
         padding-top: 16px;
         padding-bottom: 16px;
@@ -55,11 +56,25 @@
         .message-content{
             color: #bbbbbf;
         }
+        
+        i {
+            display: none;
+        }
     }
     li:hover {
         width: 96%;
         border-radius: 15px;
         background: #32353b;
+    }
+
+    li:hover i {
+            display: block;
+            cursor: pointer;
+            text-align: right;
+            margin-right: 38px;
+            align-self: center;
+            width: 20px;
+        
     }
 }
 
@@ -158,4 +173,40 @@
         height: 35px;
         width: 35px;
     }
+}
+
+
+.edit-message-show {
+    display: block;
+}
+
+.edit-message-hide {
+    display: none;
+}
+
+.edit-message-input {
+    
+    width: 63vw;
+    position: fixed;
+    right: 337px;
+    bottom: 164px;
+    height: 35px;
+    background: #40444b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+
+
+}
+
+.edit-enter{
+    display: flex;
+    position: fixed;
+    top: 85%;
+    right: -21%;
+    font-size: 13px;
+}
+.enter-to {
+    width: auto;
+    white-space: nowrap;
 }

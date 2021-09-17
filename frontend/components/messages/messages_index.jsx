@@ -29,7 +29,13 @@ class MessageIndex extends React.Component {
                     </div>
                     <ul className="message-ul">
                         {this.props.messages.reverse().map(message => {
-                            return <MessageItem key={message.id} message={message} username={this.props.username}/>
+                            return <MessageItem 
+                                        key={message.id} 
+                                        message={message} 
+                                        username={this.props.username} 
+                                        deleteMessage={this.props.deleteMessage}
+                                        updateMessage={this.props.updateMessage}
+                                    />
                         })}         
                     </ul>
                     <MessageForm 

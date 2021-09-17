@@ -4,7 +4,7 @@ import { createServer, fetchUserServers,  removeServer, updateServer, leaveServe
 import { createUserServer, fetchServers } from "../../util/server_util";
 import{ logout } from "../../actions/session_actions";
 import { createChannel, fetchChannel, updateChannel, deleteChannel } from "../../actions/channel_actions";
-import { createMessage, fetchMessages } from "../../actions/message_actions";
+import { createMessage, deleteMessage, fetchMessages, updateMessage } from "../../actions/message_actions";
 import { fetchDmChannels } from "../../actions/dm_channel_actions";
 import { fetchAllUsers } from "../../actions/user_actions";
 import { createDmMessage } from "../../actions/dm_message_actions"
@@ -32,6 +32,8 @@ const mDTP = dispatch => ({
     fetchUserServers: userId => dispatch(fetchUserServers(userId)),
     fetchMessages: channelId => dispatch(fetchMessages(channelId)),
     createMessage: message => dispatch(createMessage(message)),
+    updateMessage: message => dispatch(updateMessage(message)),
+    deleteMessage: messageId => dispatch(deleteMessage(messageId)),
     createServer: server => dispatch(createServer(server)),
     removeServer: serverId => dispatch(removeServer(serverId)),
     leaveServer: serverId => dispatch(leaveServer(serverId)),

@@ -3,8 +3,45 @@ import React from 'react';
 class MessageItem extends React.Component {
     constructor(props){
         super(props)
+        this.state = {
+            show: false,
+            body: this.props.message.body
+        }
+        this.handleDelete = this.handleDelete.bind(this)
+        this.input = this.input.bind(this)
+        this.handleUpdate = this.handleUpdate.bind(this)
+        this.showModal = this.showModal.bind(this)
+        
     }
 
+    input(e){
+        e.preventDefault();
+        this.setState({
+            body: e.currentTarget.value
+        })
+    }
+
+    handleDelete(){
+        this.props.deleteMessage(this.props.message.id)
+    }
+    
+    showModal(){
+        let next = !this.state.show
+        this.setState({
+            show: next
+        })
+    }
+
+    handleUpdate(){
+        let message = {
+            id: this.props.message.id,
+            body: this.state.body
+        }
+        this.props.updateMessage(message)
+        this.setState({
+            show: false
+        })
+    }
     render(){
         return(
             <li  className="message-li">
@@ -29,6 +66,16 @@ class MessageItem extends React.Component {
 
                     </div>
                 </div>
+                <i onClick={this.showModal}className="far fa-edit"></i>
+                <i onClick={this.handleDelete} className="fas fa-trash-alt trash"></i>
+                <form onSubmit={this.handleUpdate} className={ this.state.show ? "edit-message-show" : "edit-message-hide"}>
+                    <input className="edit-message-input" type="text" place value={this.state.body} onChange={this.input} />
+                    <div className="edit-enter">
+                        <div className="enter-to">enter to &nbsp;</div>
+                        <div className="save">save</div>
+                    </div>
+                </form>
+            
             </li>
         )
     }
