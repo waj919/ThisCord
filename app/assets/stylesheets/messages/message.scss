@@ -210,3 +210,13 @@
     width: auto;
     white-space: nowrap;
 }
+
+.clicked {
+    width: 96%;
+    border-radius: 15px;
+    background: #32353b;
+}
+
+.fa-edit-clicked, .fa-trash-alt-clicked {
+    display: none;
+}

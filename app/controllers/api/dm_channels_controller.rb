@@ -2,7 +2,7 @@ class Api::DmChannelsController < ApplicationController
 
     def index
         @dm_channels = DmChannel.where(user1_id: current_user.id).or(DmChannel.where(user2_id: current_user.id))
-        # debugger
+        
 
         if !@dm_channels
             @dm_channels = DmChannel.where(user2_id: current_user.id)

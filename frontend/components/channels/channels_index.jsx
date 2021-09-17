@@ -98,7 +98,6 @@ class ChannelsIndex extends React.Component {
 
     render(){
         if (this.props.server === undefined){ return null}
-        console.log(this.state.channelShow);
         return(
             <div id="channels-index">
                 
