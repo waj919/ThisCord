@@ -139,6 +139,7 @@
     color: white;
 }
 
+
 .channel-modal {
         z-index: 1;
         position: fixed;
@@ -441,7 +442,7 @@
 
 .delete-button {
     position: fixed;
-    left: 41%;
+    right: 50%;
     top: 550px;
     height: 35px;
     background-color: red;
@@ -451,3 +452,25 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+.show-channel-enter, .show-settings-enter, .show-edit-enter {
+    opacity: 0;
+    transform: scale(.1);
+}
+
+.show-channel-enter-active, .show-settings-enter-active, .show-edit-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 500ms;
+
+}
+
+.show-channel-exit, .show-settings-exit, .show-edit-exit {
+    opacity: 1;
+}
+
+.show-channel-exit-active, .show-settings-exit-active, .show-edit-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+  

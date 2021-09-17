@@ -2,6 +2,8 @@ body {
     background-color: #36393f;
 }
 
+
+
 .container {
     display: flex;
 }
@@ -172,3 +174,31 @@ body {
     margin-left: 22px;
     height: 58px;
 }
+
+.server-plus {
+    color: green;
+}
+
+.join {
+    background-color: green;
+    color: #cbccce;
+}
+
+.show-join-enter, .show-create-enter {
+    opacity: 0;
+}
+
+.show-join-enter-active, .show-create-enter-active {
+    opacity: 1;
+    transition: opacity 700ms;
+}
+
+.show-join-exit, .show-create-exit {
+    opacity: 1;
+}
+
+.show-join-exit-active, .show-create-exit-active {
+    opacity: 0;
+    transition: opacity 700ms;
+}
+  

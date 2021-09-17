@@ -1,10 +1,10 @@
-.messages {
+.messages, .dm-messages {
     position: absolute;
     font-size: 44px;
     top: 0;
     bottom: 0;
     left: 390px;
-    right: 220px;
+    right: 10vw;
 }
 
 #message-input-button {
@@ -41,7 +41,7 @@
     
     // padding-left: 40px;
 
-    li {
+    li, .dm-messages-li {
         font-size: 21px;
         padding-top: 16px;
         padding-bottom: 16px;
@@ -64,9 +64,10 @@
 }
 
 
-.message-ul::-webkit-scrollbar{
+.message-ul::-webkit-scrollbar, .dm-messages-ul::-webkit-scrollbar{
     overflow-y: hidden;
 }
+
 .message-info {
     display: flex;
     align-items: baseline;
@@ -118,6 +119,7 @@
     background-color: #2f3136;
     top: 51px;
     height: 100%;
+    width: 100%;
 
     .members-header {
         font-size: 30px;

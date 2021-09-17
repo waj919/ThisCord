@@ -3,6 +3,9 @@ import ServerIndexItem from './server_index_item';
 import { Link } from "react-router-dom"
 import ChannelsIndex from '../channels/channels_index';
 import MessageIndex from '../messages/messages_index';
+import DmIndex from '../direct_messages/dm_index';
+import DmMessages from '../direct_messages/dm_messages';
+import { CSSTransition } from "react-transition-group"
 
 class ServerIndex extends React.Component {
 
@@ -43,6 +46,8 @@ class ServerIndex extends React.Component {
     }
 
     componentDidMount(){
+        this.props.fetchAllUsers()
+        this.props.fetchDmChannels()
         this.props.fetchUserServers(this.props.currentUserId)
         if(this.props.channelId) {
             this.props.fetchMessages(this.props.channelId)
@@ -54,7 +59,8 @@ class ServerIndex extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        if(prevProps.channelId !== this.props.channelId){
+        if (Number.isNaN(this.props.channelId)){}
+        else if(prevProps.channelId !== this.props.channelId){
             this.props.fetchMessages(this.props.channelId)
         }
     }
@@ -98,29 +104,32 @@ class ServerIndex extends React.Component {
         if(all !== undefined) {
             join = 
             <div className= { this.state.joinShow ? "server-modal show" : "server-modal hide"}>
-                <form className="server-modal-join" onSubmit={this.handleJoinSubmit}>
-                    <div className="server-header">
-                        <p className="server-label">Join a Server!</p>
+                <CSSTransition in={this.state.joinShow} timeout={700} classNames="show-join" unmountOnExit>
+                    <form className="server-modal-join" onSubmit={this.handleJoinSubmit}>
+                        <div className="server-header">
+                            <p className="server-label">Join a Server!</p>
 
-                        <p className="close-button" onClick={this.hideJoinModal}>
-                            &times;
-                        </p>
-                    </div>
-                    <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
-                        <option value="" >Select your option</option>
-                        {all.map(server => {
-                            return <option key={server.id} value={server.id}>{server.name}</option>
-                        })}
-                    </select>
-                    <br />
-                    <input id="join-button" type="submit" value="Join Server"/>
-                </form>
-
+                            <p className="close-button" onClick={this.hideJoinModal}>
+                                &times;
+                            </p>
+                        </div>
+                        <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
+                            <option value="" >Select your option</option>
+                            {all.map(server => {
+                                return <option key={server.id} value={server.id}>{server.name}</option>
+                            })}
+                        </select>
+                        <br />
+                        <input id="join-button" type="submit" value="Join Server"/>
+                    </form>
+                </CSSTransition>
 
             </div>
         } else {
             join = null;
         }
+       
+
         return(
             <div className="container">
                 <ul id="server-index">
@@ -138,6 +147,7 @@ class ServerIndex extends React.Component {
                     })}
                     <li>
                         <div className={this.state.show ? "server-modal show" : "server-modal hide"}>
+                        <CSSTransition in={this.state.show} timeout={700} classNames="show-create" unmountOnExit>
                             <form className="server-modal-main" onSubmit={this.handleSubmit}>
                                 <div className="server-header">
                                     <h1 className="server-label">Create a Server</h1>
@@ -155,8 +165,9 @@ class ServerIndex extends React.Component {
                                 <br />
                                 <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false }> Create Server</button>
                             </form>
+                        </CSSTransition >
                         </div>
-                        <button className="server-buttons" onClick={this.showModal}> + </button>
+                        <button className="server-buttons server-plus" onClick={this.showModal}> + </button>
                     </li>
                     <li id="log-out">
                         <button className="server-buttons logout-button" onClick={() => this.props.logout()}>
@@ -166,11 +177,12 @@ class ServerIndex extends React.Component {
 
                     <li>
                         {join}
-                        <button className="server-buttons" onClick={this.showJoinModal}>
+                        <button className="server-buttons join" onClick={this.showJoinModal}>
                             Join
                         </button>
                     </li>
                 </ul>
+
                 
                 <ChannelsIndex 
                     server={this.props.server} 
@@ -191,10 +203,22 @@ class ServerIndex extends React.Component {
                     username={this.props.username} 
                     channelId={this.props.channelId} 
                     createMessage={this.props.createMessage}
-                    // channel={this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)]}
                     server={this.props.server}
                 />
 
+                <DmIndex 
+                    username={this.props.username}
+                    path={this.props.path}
+                    dmChannels={this.props.dmChannels} 
+                    fetchDmChannels={this.props.fetchDmChannels} 
+                    path={this.props.path}
+                    // user={}
+                />
+
+                <DmMessages 
+                    dmChannel={this.props.dmChannel} 
+                    createDmMessage={this.props.createDmMessage}
+                />
 
             </div>
 

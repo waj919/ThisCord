@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom" 
 import MessageIndex from '../messages/messages_index';
+import { CSSTransition } from "react-transition-group"
 
 
 class ChannelsIndexItem extends React.Component {
@@ -58,7 +59,7 @@ class ChannelsIndexItem extends React.Component {
     render(){
         return(
             <div>
-               <Link onClick={this.handleClick} className="channel-link" to={`/channel/${this.props.channel.server_id}/${this.props.channel.id}`}> 
+               <Link className="channel-link" to={`/channel/${this.props.channel.server_id}/${this.props.channel.id}`}> 
                     <div className="hashtag">
                         &#35;          
                     </div>
@@ -68,23 +69,32 @@ class ChannelsIndexItem extends React.Component {
                     <i onClick={this.showModal} className="channel-cog fas fa-cog"></i>
                      
                 </Link>
-                <div className={this.state.show ? "channel-modal show" : "channel-modal hide"}>
-                    <form onSubmit={this.handleSubmit} className="channel-modal-edit" >
-                            <div className="edit-header">
-                            
-                            <h1 className="edit-label">Edit Channel Name</h1>
+                
+                <CSSTransition in={this.state.show} timeout={500} classNames="show-edit" unmountOnExit>
+                    <div className={this.state.show ? "channel-modal show" : "channel-modal hide"}>
+
+                
+                        <form onSubmit={this.handleSubmit} className="channel-modal-edit " >
+                                <div className="edit-header">
                                 
-                                <h1 className="edit-close-button" onClick={this.showModal}>
-                                    &times;
-                                </h1>
-                            </div>
-                            <input className="edit-input" type="text" onChange={this.input}/>
+                                <h1 className="edit-label">Edit Channel Name</h1>
+                                    
+                                    <h1 className="edit-close-button" onClick={this.showModal}>
+                                        &times;
+                                    </h1>
+                                </div>
+                                <input className="edit-input" type="text" onChange={this.input}/>
+                            
+                                <br />
+                                <input type="submit" className="edit-button" value="Edit Channel" />
+                        </form>
                         
-                            <br />
-                            <input type="submit" className="edit-button" value="Edit Channel" />
-                    </form>
-                            <button onClick={this.handleDelete} className="delete-button">Delete Channel</button>
-                </div>
+                        <button onClick={this.handleDelete} className="delete-button">Delete Channel</button>
+                            
+                    </div>
+                </CSSTransition>
+               
+
             </div>
         )
     }
