@@ -1,5 +1,6 @@
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
+import { CSSTransition } from "react-transition-group"
 
 
 class ChannelsIndex extends React.Component {
@@ -97,7 +98,7 @@ class ChannelsIndex extends React.Component {
 
     render(){
         if (this.props.server === undefined){ return null}
-        
+        console.log(this.state.channelShow);
         return(
             <div id="channels-index">
                 
@@ -117,40 +118,41 @@ class ChannelsIndex extends React.Component {
              
                 </div>
 
-                <div id="server-settings" className={this.state.serverSettings ? "grid" : "hide"}>
-                        <div id="left-container">
-                            <div id="server-settings-name">
-                                {this.props.server.name}
+                <CSSTransition in={this.state.serverSettings} timeout={500} classNames="show-channel" unmountOnExit>
+                    <div id="server-settings" className="grid">
+                            <div id="left-container">
+                                <div id="server-settings-name">
+                                    {this.props.server.name}
+                                </div>
+                                <ul id="settings-ul">
+                                    <li>
+                                        Overview
+                                    </li>
+                                    <li onClick={this.leaveServer}>
+                                        Leave Server
+                                    </li>
+                                    <li onClick={this.deleteServer}>
+                                        Delete Server
+                                    </li>
+                                </ul>
                             </div>
-                            <ul id="settings-ul">
-                                <li>
-                                    Overview
-                                </li>
-                                <li onClick={this.leaveServer}> 
-                                    Leave Server
-                                </li>
-                                <li onClick={this.deleteServer}>
-                                    Delete Server
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div id="right-container">
-                                <form onSubmit={this.handleUpdate} id="server-settings-form">
-                                    <div>
-                                        <label>
-                                            EDIT SERVER
-                                        </label>
-                                        <div className="server-close-button" onClick={this.serverSettings}>
-                                            &times;
+                            <div id="right-container">
+                                    <form onSubmit={this.handleUpdate} id="server-settings-form">
+                                        <div>
+                                            <label>
+                                                EDIT SERVER
+                                            </label>
+                                            <div className="server-close-button" onClick={this.serverSettings}>
+                                                &times;
+                                            </div>
                                         </div>
-                                    </div>
-                                        <input type="text" value={this.state.name} onChange={this.input} />
-                                        <button id="change-button">Change Server Name</button>
-                                </form>
-                        </div>
-                
-                </div>
+                                            <input type="text" value={this.state.name} onChange={this.input} />
+                                            <button id="change-button">Change Server Name</button>
+                                    </form>
+                            </div>
+                    
+                    </div>
+                </CSSTransition>
 
 
                 <br />
@@ -177,26 +179,28 @@ class ChannelsIndex extends React.Component {
                 
                 </div>
                 <div className={this.state.channelShow ? "channel-modal show" : "channel-modal hide"}>
-                            <form className="channel-modal-main" onSubmit={this.handleSubmit}>
-                                <div className="channel-header">
-                                    <h1 className="channel-label">Create a Channel</h1>
-                                    
-                                    <h1 className="close-button" onClick={this.hideModal}>
-                                        &times;
-                                    </h1>
-                                </div>
-
-                                <p>
-                                    Your channel is where you and your friends hang out.Make yours and start talking.
-                                </p>
-                                <div className="input-hashtag">
-                                    &#35;          
-                                </div>
-                                <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input}/>
-                            
-                                <br />
-                                <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>
-                            </form>
+                        
+                            <CSSTransition in={this.state.channelShow} timeout={500} classNames="show-channel" unmountOnExit>
+                                <form  className="channel-modal channel-modal-main" onSubmit={this.handleSubmit}>
+                                    <div className="channel-header">
+                                        <h1 className="channel-label">Create a Channel</h1>
+                                
+                                        <h1 className="close-button" onClick={this.hideModal}>
+                                            &times;
+                                        </h1>
+                                    </div>
+                                    <p>
+                                        Your channel is where you and your friends hang out.Make yours and start talking.
+                                    </p>
+                                    <div className="input-hashtag">
+                                        &#35;
+                                    </div>
+                                    <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input}/>
+                                
+                                    <br />
+                                    <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>
+                                </form>
+                            </CSSTransition>
                 </div>
 
                 <div className="members">

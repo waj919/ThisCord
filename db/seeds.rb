@@ -47,6 +47,16 @@ channels = [
     [4, "Ruby"],
 ]
 
+dm_channel = [
+    [3, 4]
+
+]
+
+dm_messages = [
+    [3, 1, "Hello" ],
+    [4, 1 , "wassup waj"],
+]
+
 
 user.each do |username, email, password|
     User.create!( username: username, email: email, password: password)
@@ -62,4 +72,12 @@ end
 
 channels.each do |server_id, name|
     Channel.create!(server_id: server_id, name: name)
+end
+3
+dm_channel.each do |user1_id, user2_id|
+    DmChannel.create!(user1_id: user1_id, user2_id: user2_id)
+end
+
+dm_messages.each do |sender_id, dm_channel_id, body|
+    DmMessage.create!(sender_id:sender_id, dm_channel_id: dm_channel_id, body: body)
 end

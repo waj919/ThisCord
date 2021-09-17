@@ -33,9 +33,22 @@ class User < ApplicationRecord
         through: :user_servers,
         source: :server
 
-        has_many :messages,
-            foreign_key: :sender_id,
-            class_name: :Message
+    has_many :messages,
+        foreign_key: :sender_id,
+        class_name: :Message
+
+    has_many :dms,
+        foreign_key: :sender_id,
+        class_name: :DmMessage
+
+    has_one :user_1,
+        foreign_key: :user1_id,
+        class_name: :DmChannel
+
+    has_one :user_2,
+        foreign_key: :user2_id,
+        class_name: :DmChannel
+
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
