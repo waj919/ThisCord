@@ -77,3 +77,7 @@ class MessageForm extends React.Component {
 * JSX
 * PostgreSQL
 * Ruby on Rails
+
+## Bonus Features
+* Editing messages the way Discord has the edit feature
+* Creating Invite codes for servers for people to join by
