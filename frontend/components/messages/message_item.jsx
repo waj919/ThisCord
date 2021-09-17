@@ -66,7 +66,7 @@ class MessageItem extends React.Component {
 
                     </div>
                 </div>
-                <i onClick={this.showModal}className="far fa-edit"></i>
+                {/* <i onClick={this.showModal}className="far fa-edit"></i> */}
                 <i onClick={this.handleDelete} className="fas fa-trash-alt trash"></i>
                 <form onSubmit={this.handleUpdate} className={ this.state.show ? "edit-message-show" : "edit-message-hide"}>
                     <input className="edit-message-input" type="text" value={this.state.body} onChange={this.input} />
