@@ -4,7 +4,7 @@ ThisCord is a clone of Discord, a social website that allows a user to talk over
 
 ## Features
 
-* Each users is able to diret message another user and figuring out how to get that to work while still having the "/@me" that discord has and getting the direct messages to appear was a challenge. My solution to this was creating a new table in my database just for direct message channels. This way I could still have the "/@me" without having any unecessary id's in my url path. Each direct message channel is a channel on its own and does not have any server id associated with it.
+* Each users is able to direct message another user and figuring out how to get that to work while still having the "/@me" that discord has and getting the direct messages to appear was a challenge. My solution to this was creating a new table in my database just for direct message channels. This way I could still have the "/@me" without having any unecessary id's in my url path. Each direct message channel is a channel on its own and does not have any server id associated with it.
 
 ```js
 <Switch>
