@@ -43,6 +43,7 @@ class ServerIndex extends React.Component {
     
     hideJoinModal = () => {
         this.setState({ joinShow: false });
+
     }
 
     componentDidMount(){
@@ -63,6 +64,7 @@ class ServerIndex extends React.Component {
         else if(prevProps.channelId !== this.props.channelId){
             this.props.fetchMessages(this.props.channelId)
         }
+        // this.props.fetchUserServers(this.props.currentUserId)
     }
     
     input(e){
@@ -82,6 +84,8 @@ class ServerIndex extends React.Component {
             name: "",
             show: false
         })
+        this.props.fetchUserServers(this.props.currentUserId)
+
     }
 
     handleChange(e){
@@ -95,6 +99,8 @@ class ServerIndex extends React.Component {
         this.setState({
             joinShow: false
         })
+        // this.props.history.push(`/channel/${this.state.value}`)
+        this.props.fetchUserServers(this.props.currentUserId)
     }
 
 
@@ -196,6 +202,7 @@ class ServerIndex extends React.Component {
                     deleteChannel={this.props.deleteChannel}
                     fetchMessages={this.props.fetchMessages}
                     channelId ={this.props.channelId}
+                    fetchUserServers ={this.props.fetchUserServers}
                 />
 
                 <MessageIndex 
@@ -206,6 +213,7 @@ class ServerIndex extends React.Component {
                     server={this.props.server}
                     deleteMessage={this.props.deleteMessage}
                     updateMessage={this.props.updateMessage}
+                    currentUserId={this.props.currentUserId}
                 />
 
                 <DmIndex 
@@ -214,7 +222,9 @@ class ServerIndex extends React.Component {
                     dmChannels={this.props.dmChannels} 
                     fetchDmChannels={this.props.fetchDmChannels} 
                     path={this.props.path}
-                    // user={}
+                    users={this.props.users}
+                    currentUserId={this.props.currentUserId}
+                    createDmChannel={this.props.createDmChannel}
                 />
 
                 <DmMessages 

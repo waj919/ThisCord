@@ -12,7 +12,7 @@ class Api::UserServersController < ApplicationController
                 user_id: current_user.id
             )
         @user_server[0].delete
-
+   
     end
 
 

@@ -57,5 +57,5 @@ export const updateServer = (server) => dispatch => {
 
 export const leaveServer = (serverId) => (dispatch) => {
     return serverUtil.leaveServer(serverId) 
-    .then( server => dispatch(deleteServer(server)))
+    .then( server => {return dispatch(deleteServer(serverId))})
 }

@@ -11,7 +11,8 @@ const serverReducer = (state ={}, action) => {
             nextState[action.server.id] = action.server
             return nextState;
         case REMOVE_SERVER: 
-            delete nextState[action.server]
+        debugger
+            delete nextState[action.server.id]
             return nextState;
         default:
             return state;

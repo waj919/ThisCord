@@ -25,17 +25,18 @@ class ChannelsIndex extends React.Component {
     }
 
    
- 
+
 
     leaveServer(){
         this.props.leaveServer(this.props.server.id)
-        this.props.history.push('channel/@me')
+        this.props.history.push('/channel/@me')
         this.serverSettings();
     }
 
     deleteServer(){
         this.props.removeServer(this.props.server.id)
-        this.props.history.push('channel/@me')
+       
+        this.props.history.push('/channel/@me')
         this.serverSettings();
     }
 
@@ -48,11 +49,12 @@ class ChannelsIndex extends React.Component {
     
     serverSettings(){
         const action = !this.state.serverSettings;
-            this.setState({
-                show: false,
-                serverSettings: action
-            })
-        }
+        this.setState({
+            show: false,
+            serverSettings: action
+        })
+        this.props.fetchUserServers(this.props.currentUserId)
+    }
 
     showModal = () => {
         this.setState({ channelShow: true });
@@ -162,7 +164,7 @@ class ChannelsIndex extends React.Component {
                 </div>
                 <ul id="channels-list">
                     {this.props.server.channels.map(channel => {
-                        return <li className="channel-li" key={channel.id}>
+                        return <li key={channel.name} className="channel-li" >
                                         <ChannelsIndexItem 
                                             channel={channel}
                                             updateChannel={this.props.updateChannel}

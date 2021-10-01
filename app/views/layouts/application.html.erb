@@ -12,6 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="<%=image_url('logo.png')%>">
+    <meta property="og:title" content="ThisCord" />
+    <meta property="og:image" content="<%= image_url('featured.png') %>"/>
+    <meta property="og:description"
+      content="ThisCord, a clone of Discord, is a single page app that allows you to create servers and chat with friends and family via live chat"
+    />
+    <meta property="og:url"
+      content="https://thiscord-fs.herokuapp.com/#/"
+    />
     <%= action_cable_meta_tag %>
 
     <% if current_user %>

@@ -3,7 +3,6 @@
     background-image: image-url("clouds.svg");
     background-color: #404eed;
     background-size: cover;
-    height: 628px;
 }
 
 
@@ -38,6 +37,14 @@
     display: flex;
     justify-content: space-between;
     margin-top: 119px;
+
+    #cartoon-left {
+        width: 26%;
+    }
+
+    #cartoon-right {
+        width: 23%;
+    }
 }
 
 .headline {
@@ -56,12 +63,13 @@
     font-weight: 900;
     font-family: 'Work Sans', sans-serif;
     color: white;
+    padding-bottom: 15px;
 }
 
 
 #headline-content {
     position: absolute;
-    width: 781px;
+    width: 36%;
     transform: translate(31px, 229px);
     font-size: 19px;
     font-family: 'Work Sans', sans-serif;
@@ -87,7 +95,8 @@
 }
 #splash-1, #content-1, #splash-2, #content-2, #splash-3, #content-3{
     display: flex;
-    height: 600px;
+    height: 100%;
+    padding-top: 60px;
 }
 
 

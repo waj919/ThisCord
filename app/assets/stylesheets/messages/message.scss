@@ -54,6 +54,7 @@
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         
         .message-content{
+            font-size: 1rem;
             color: #bbbbbf;
         }
         
@@ -90,6 +91,7 @@
 
     .message-name {
         padding-right: 10px;
+        font-size: 1rem;
         width: auto;
     }
     .message-time {
@@ -122,7 +124,7 @@
     }
 
     .message-channel-name {
-        font-size: 21px;
+        font-size: 1rem;
         align-self: center;
     }
 }
@@ -154,6 +156,7 @@
             padding-top: 21px;
             font-size: 20px;
             gap: 10px;
+            font-size: 1rem;
 
         }
     }
