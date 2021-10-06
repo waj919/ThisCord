@@ -29,9 +29,9 @@ class DmMessages extends React.Component {
 
                                             </div>
                                         </div>
-                                            <div className="dm-messages-body">
-                                                {message.body}
-                                            </div>
+                                        <div className="dm-messages-body">
+                                            {message.body}
+                                        </div>
                                     </div>
                                  
                                </li>

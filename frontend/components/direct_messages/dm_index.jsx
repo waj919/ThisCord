@@ -47,7 +47,7 @@ class DmIndex extends React.Component {
     render(){
         if(!this.props.path.includes("@")) return null
         if(!this.props.users) return null
-    
+        console.log(this.props.dmChannels);
         return (
     
             <div className="dms">
