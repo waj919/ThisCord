@@ -49,11 +49,11 @@ class ChannelsIndex extends React.Component {
     
     serverSettings(){
         const action = !this.state.serverSettings;
+        this.props.fetchUserServers(this.props.currentUserId)
         this.setState({
             show: false,
             serverSettings: action
         })
-        this.props.fetchUserServers(this.props.currentUserId)
     }
 
     showModal = () => {

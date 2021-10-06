@@ -8,6 +8,7 @@ class DmIndex extends React.Component {
         super(props)
         this.state = {
             show: false,
+            dmExist: false,
             value: ""
         }
         // this.user = this.props.dmChannel
@@ -17,10 +18,19 @@ class DmIndex extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.dmChannels.length != this.props.dmChannels.length){
+            this.props.fetchDmChannels();
+        }
+    }
+
     showModal(){
         let next = !this.state.show
         this.setState({
-            show: next
+            show: next,
+            dmExist: false,
+            value: ""
+
         })
     }
 
@@ -35,10 +45,21 @@ class DmIndex extends React.Component {
             user1_id: this.props.currentUserId,
             user2_id: this.state.value
         }
+        for (let i = 0; i < this.props.dmChannels.length; i++) {
+            debugger
+         if(this.props.dmChannels[i].user_1.id === parseInt(this.state.value) || this.props.dmChannels[i].user_2.id === parseInt(this.state.value) ){
+                console.log("user dm exists!");
+                this.setState({
+                    dmExist: true,
+                })
+                return;
+            }
+        }
 
         this.props.createDmChannel(dmChannel)
         this.setState({
             show: false,
+            dmExist: false,
             value: ""
         })
     }
@@ -47,7 +68,6 @@ class DmIndex extends React.Component {
     render(){
         if(!this.props.path.includes("@")) return null
         if(!this.props.users) return null
-        console.log(this.props.dmChannels);
         return (
     
             <div className="dms">
@@ -77,8 +97,11 @@ class DmIndex extends React.Component {
                                 <div className="dm-content">
                                     Chat with a friend privately!!
                                 </div>
+                                <div className={this.state.dmExist ? "error show" : "error hide"}>
+                                    User DM exists already!
+                                </div>
                         <select className="dm-dropdown" value={this.state.value} onChange={this.handleChange}>
-                            <option value="" >Select a Friend</option>
+                            <option value="" >Choose a Friend!</option>
                             {this.props.users.map(user => {
                                 if(user.username != this.props.username) {
                                     return <option key={user.id} value={user.id}>{user.username}</option>
@@ -96,7 +119,7 @@ class DmIndex extends React.Component {
                     {this.props.dmChannels.map(dmChannel => {
                         
                         if(dmChannel.user_1.id === this.props.currentUserId || dmChannel.user_2.id === this.props.currentUserId){
-                            return <li key={dmChannel.id}>
+                            return <li key={dmChannel.id.toString()}>
                                         <DmItem                
                                         dmChannel={dmChannel}
                                         messages={dmChannel.messages}

@@ -12,7 +12,7 @@ const Auth = ({ loggedIn, path, component: Component}) => {
     return ( <Route 
         path = {path}
         render = {props => (
-            loggedIn ? <Redirect to="/channel/@me/:dmChannelId"/> : <Component {...props}/>
+            loggedIn ? <Redirect to="/channel/@me"/> : <Component {...props}/>
         )}
     />)
 }

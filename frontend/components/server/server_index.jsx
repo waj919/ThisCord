@@ -107,7 +107,25 @@ class ServerIndex extends React.Component {
     render(){
         let join;
         let all = this.state.allServers.responseJSON
+        if(!this.props.servers) return null;        
         if(all !== undefined) {
+            let notJoined = []
+            let count = 0;
+            all.forEach(server => {
+                
+                for (let i = 0; i <= this.props.servers.length - 1; i++) {
+                    debugger
+                    if(this.props.servers[i].id === server.id){
+                        count++;
+                    }
+                }
+                if(count !== 1){
+                    notJoined.push(server)
+                } 
+                count = 0;
+            
+            })
+            console.log(notJoined);
             join = 
             <div className= { this.state.joinShow ? "server-modal show" : "server-modal hide"}>
                 <CSSTransition in={this.state.joinShow} timeout={700} classNames="show-join" unmountOnExit>
@@ -121,7 +139,7 @@ class ServerIndex extends React.Component {
                         </div>
                         <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
                             <option value="" >Select your option</option>
-                            {all.map(server => {
+                            {notJoined.map(server => {
                                 return <option key={server.id} value={server.id}>{server.name}</option>
                             })}
                         </select>
