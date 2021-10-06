@@ -10,6 +10,8 @@
         display: inline;
         color: #888a91;
         text-decoration: none;
+        align-self: center;
+
     }
     .dm-messages-name {
         height: 50px;
@@ -142,4 +144,81 @@
     font-weight: bolder;
     color: #a8a9ad;
     cursor: pointer;
+    width: auto;
+}
+.dm-close-button {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    align-self: center;
+    font-size: 40px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.dm-content{ 
+    position: absolute; 
+    top: 65px;
+    left: 69px;
+    letter-spacing: 2px;
+    width: 97%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #777c84;
+}
+
+.dm-dropdown {
+    position: absolute;
+    left: 87px;
+    top: 122px;
+    font-size: 19px;
+    height: 35px;
+    width: 188px;
+    text-indent: 5px;
+    // border-radius: 10px;
+    border: 1px solid gray;
+    color: white;
+    background-color: #383c3c;
+}
+
+
+.dm-modal-main {
+    position:fixed;
+    background: #383c3c;
+    width: 400px;
+    height: 200px;
+    border-radius: 17px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.dm-button {
+    position: absolute;
+    top: 122px;
+    right: 47px;
+    font-size: 18px;
+    height: 36px;
+    width: 65px;
+    background-color: #5865f2;
+    border: none;
+    border-radius: 10px;
+}
+
+.dm-label {
+    position: absolute;
+    top: 20px;
+    left: 93px;
+    white-space: nowrap;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: white;
+}
+
+.dm-channels {
+    display: flex;
+    gap: 10px;
 }

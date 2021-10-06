@@ -38,6 +38,7 @@ class DmIndex extends React.Component {
 
         this.props.createDmChannel(dmChannel)
         this.setState({
+            show: false,
             value: ""
         })
     }
@@ -46,6 +47,7 @@ class DmIndex extends React.Component {
     render(){
         if(!this.props.path.includes("@")) return null
         if(!this.props.users) return null
+    
         return (
     
             <div className="dms">
@@ -62,23 +64,28 @@ class DmIndex extends React.Component {
                     +
                 </div>
 
-                <div className={this.state.show ? "show" : "hide"} >
+                <div className={this.state.show ? "server-modal show" : "server-modal hide"} >
 
-                    <form className="server-modal-main" onSubmit={this.handleSubmit}>
+                    <form className="dm-modal-main" onSubmit={this.handleSubmit}>
                                 <div className="server-header">
-                                    <h1 className="server-label">Create a Server</h1>
+                                    <h1 className="dm-label">Chat with a Friend</h1>
                                     
-                                    <h1 className="close-button" onClick={this.showModal}>
+                                    <h1 className="dm-close-button" onClick={this.showModal}>
                                         &times;
                                     </h1>
                                 </div>
-                        <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
-                            <option value="" >Select your option</option>
+                                <div className="dm-content">
+                                    Chat with a friend privately!!
+                                </div>
+                        <select className="dm-dropdown" value={this.state.value} onChange={this.handleChange}>
+                            <option value="" >Select a Friend</option>
                             {this.props.users.map(user => {
-                                return <option key={user.id} value={user.id}>{user.username}</option>
+                                if(user.username != this.props.username) {
+                                    return <option key={user.id} value={user.id}>{user.username}</option>
+                                }
                             })}
                         </select>
-                        <button>Chat</button>
+                        <button className="dm-button">Chat</button>
                     </form>
 
 
@@ -87,11 +94,16 @@ class DmIndex extends React.Component {
                 <ul className="dm-channels-ul">
 
                     {this.props.dmChannels.map(dmChannel => {
-                      return <DmItem                
-                                key={dmChannel.id}
-                                dmChannel={dmChannel}
-                                messages={dmChannel.messages}
-                            />
+                        
+                        if(dmChannel.user_1.id === this.props.currentUserId || dmChannel.user_2.id === this.props.currentUserId){
+                            return <li key={dmChannel.id}>
+                                        <DmItem                
+                                        dmChannel={dmChannel}
+                                        messages={dmChannel.messages}
+                                        currentUserId={this.props.currentUserId}
+                                        />
+                                    </li>
+                        }
                     })}
                 </ul>
             </div>
