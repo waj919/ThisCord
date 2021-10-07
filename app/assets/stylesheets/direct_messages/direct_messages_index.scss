@@ -34,7 +34,8 @@
     .direct-message-text {
         position: absolute;
         top: 70px;
-        left: 13px;
+        font-size: 12px;
+        left: 25px;
         color: #838982;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 
@@ -65,8 +66,8 @@
     }
 
     .dm-logo {
-        height: 30px;
-        width: 30px;
+        height: 28px;
+        width: 28px;
     }
 
 }
@@ -146,7 +147,7 @@
     position: absolute;
     top: 63px;
     left: 250px;
-    font-size: 31px;
+    font-size: 22px;
     font-weight: bolder;
     color: #a8a9ad;
     cursor: pointer;

@@ -72,9 +72,8 @@ class ServerIndex extends React.Component {
         this.setState({
             name: e.currentTarget.value
         })
-        this.props.history.push(`/channel/${this.state.allServers}`)
     }
-
+    
     handleSubmit(e){
         let server = {
             name: this.state.name,
@@ -85,6 +84,8 @@ class ServerIndex extends React.Component {
             show: false
         })
         this.props.fetchUserServers(this.props.currentUserId)
+        debugger
+        // this.props.history.push(`/channel/${this.props.servers[this.]}`)
 
     }
 
@@ -95,12 +96,14 @@ class ServerIndex extends React.Component {
     }
 
     handleJoinSubmit(e){
+        let allServers = this.state.allServers.responseJSON
         this.props.createUserServer(this.state.value)
+        // debugger
+        this.props.fetchUserServers(this.props.currentUserId)
+        this.props.history.push(`/channel/${this.state.value}/${allServers[allServers.findIndex(ele => ele.id === parseInt(this.state.value))].servers[0].id}`)
         this.setState({
             joinShow: false
         })
-        // this.props.history.push(`/channel/${this.state.value}`)
-        this.props.fetchUserServers(this.props.currentUserId)
     }
 
 
@@ -114,7 +117,6 @@ class ServerIndex extends React.Component {
             all.forEach(server => {
                 
                 for (let i = 0; i <= this.props.servers.length - 1; i++) {
-                    debugger
                     if(this.props.servers[i].id === server.id){
                         count++;
                     }
@@ -125,7 +127,6 @@ class ServerIndex extends React.Component {
                 count = 0;
             
             })
-            console.log(notJoined);
             join = 
             <div className= { this.state.joinShow ? "server-modal show" : "server-modal hide"}>
                 <CSSTransition in={this.state.joinShow} timeout={700} classNames="show-join" unmountOnExit>
@@ -139,7 +140,7 @@ class ServerIndex extends React.Component {
                         </div>
                         <select id="dropdown" value={this.state.value} onChange={this.handleChange}>
                             <option value="" >Select your option</option>
-                            {notJoined.map(server => {
+                            {notJoined.map((server) => {
                                 return <option key={server.id} value={server.id}>{server.name}</option>
                             })}
                         </select>
@@ -219,8 +220,9 @@ class ServerIndex extends React.Component {
                     updateChannel={this.props.updateChannel}
                     deleteChannel={this.props.deleteChannel}
                     fetchMessages={this.props.fetchMessages}
-                    channelId ={this.props.channelId}
-                    fetchUserServers ={this.props.fetchUserServers}
+                    channelId={this.props.channelId}
+                    fetchUserServers={this.props.fetchUserServers}
+                    currentUserId={this.props.currentUserId}
                 />
 
                 <MessageIndex 
@@ -243,6 +245,7 @@ class ServerIndex extends React.Component {
                     users={this.props.users}
                     currentUserId={this.props.currentUserId}
                     createDmChannel={this.props.createDmChannel}
+                    fetchUserServers={this.props.fetchUserServers}
                 />
 
                 <DmMessages 

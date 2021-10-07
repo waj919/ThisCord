@@ -8,9 +8,12 @@ class ChannelsIndex extends React.Component {
         super(props)
         this.state = {
             name: "",
+            confirmName: "",
             channelShow: false,
             show: false,
-            serverSettings: false
+            serverSettings: false,
+            confirm: false,
+            error: false,
         }
 
         this.showModal = this.showModal.bind(this)
@@ -22,9 +25,13 @@ class ChannelsIndex extends React.Component {
         this.serverSettings = this.serverSettings.bind(this)
         this.deleteServer = this.deleteServer.bind(this)
         this.leaveServer = this.leaveServer.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
-   
+    componentDidMount(){
+        this.props.fetchUserServers(this.props.currentUserId)
+    }
+
 
 
     leaveServer(){
@@ -33,11 +40,25 @@ class ChannelsIndex extends React.Component {
         this.serverSettings();
     }
 
+    handleClick(e){
+        this.setState({
+            confirm: !(this.state.confirm),
+            error: false
+        })
+    }
+
     deleteServer(){
-        this.props.removeServer(this.props.server.id)
+        if(this.state.confirmName === this.props.server.name){
+            this.props.removeServer(this.props.server.id)
+            this.props.fetchUserServers(this.props.currentUserId)
+            this.props.history.push('/channel/@me')
+            this.serverSettings();
+        } else {
+            this.setState({
+                error: true
+            })
+        }
        
-        this.props.history.push('/channel/@me')
-        this.serverSettings();
     }
 
     serverSettingsDropdown(){
@@ -52,7 +73,10 @@ class ChannelsIndex extends React.Component {
         this.props.fetchUserServers(this.props.currentUserId)
         this.setState({
             show: false,
-            serverSettings: action
+            serverSettings: action,
+            confirmName: "",
+            error: false,
+            confirm: false
         })
     }
 
@@ -67,11 +91,14 @@ class ChannelsIndex extends React.Component {
         });
     }
 
-    input(e){
-        e.preventDefault()
-        this.setState({
-            name: e.currentTarget.value
-        })
+    input(field){
+        return e => {
+            e.preventDefault()
+            this.setState({
+                [field]: e.currentTarget.value
+            })
+            
+        }
     }
 
     handleUpdate(e){
@@ -115,8 +142,23 @@ class ChannelsIndex extends React.Component {
                         </ul>
                     </div>
 
+                </div>
+
+                <div className={this.state.confirm ? "confirm-modal show" : "channel-modal hide"}>
                    
-             
+                   <div className="confirm-modal-main">
+                       <form onSubmit={this.deleteServer} >
+                            <p className="confirm-delete">Delete '{this.props.server.name}' ?</p>
+                            <p className="confirm-message">Are you sure you want to delete <span>{this.props.server.name}</span>? This action cannot be undone. </p>
+                            <label>ENTER SERVER NAME</label>
+                            <input type="text" value={this.state.confirmName} onChange={this.input('confirmName')}/>
+                            <p className={this.state.error ? "confirm-error show" : "confirm-error hide"}>You didn't enter the server name correctly</p>
+                            <button className="confirm-button">Delete Server</button>
+                        </form>
+                        
+                        <div className="confirm-cancel" onClick={this.handleClick}>Cancel</div>
+                        
+                    </div> 
                 </div>
 
                 <CSSTransition in={this.state.serverSettings} timeout={500} classNames="show-channel" unmountOnExit>
@@ -132,7 +174,7 @@ class ChannelsIndex extends React.Component {
                                     <li onClick={this.leaveServer}>
                                         Leave Server
                                     </li>
-                                    <li onClick={this.deleteServer}>
+                                    <li className={this.props.server.creator_id === this.props.currentUserId ? "show" : "hide"} onClick={this.handleClick}>
                                         Delete Server
                                     </li>
                                 </ul>
@@ -147,7 +189,7 @@ class ChannelsIndex extends React.Component {
                                                 &times;
                                             </div>
                                         </div>
-                                            <input type="text" value={this.state.name} onChange={this.input} />
+                                            <input type="text" value={this.state.name} onChange={this.input('name')} />
                                             <button id="change-button">Change Server Name</button>
                                     </form>
                             </div>
@@ -196,7 +238,7 @@ class ChannelsIndex extends React.Component {
                                     <div className="input-hashtag">
                                         &#35;
                                     </div>
-                                    <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input}/>
+                                    <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input('name')}/>
                                 
                                     <br />
                                     <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>
