@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import ServerIndex from "./server_index"
-import { createServer, fetchUserServers,  removeServer, updateServer, leaveServer} from "../../actions/server_actions";
-import { createUserServer, fetchServers } from "../../util/server_util";
-import{ logout } from "../../actions/session_actions";
+import { createServer, fetchUserServers, createUserServer, removeServer, updateServer, leaveServer} from "../../actions/server_actions";
+import { fetchServers } from "../../util/server_util";
+import { logout } from "../../actions/session_actions";
 import { createChannel, fetchChannel, updateChannel, deleteChannel } from "../../actions/channel_actions";
 import { createMessage, deleteMessage, fetchMessages, updateMessage } from "../../actions/message_actions";
 import { createDmChannel, fetchDmChannels } from "../../actions/dm_channel_actions";
@@ -26,7 +26,7 @@ const mSTP = (state, ownProps) => {
 }
 
 const mDTP = dispatch => ({
-    createUserServer: serverId => createUserServer(serverId),
+    createUserServer: serverId => dispatch(createUserServer(serverId)),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     fetchServers: () => fetchServers(),
     fetchUserServers: userId => dispatch(fetchUserServers(userId)),

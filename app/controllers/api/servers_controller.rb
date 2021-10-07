@@ -30,12 +30,14 @@ class Api::ServersController < ApplicationController
 
     def destroy
         @server = Server.find_by(id: params[:id])
+        @id = @server.id
         @channels = @server.channels
         if @server.creator_id != current_user.id
             render json: ["Must be owner to delete server"], status: 400
         else       
-            @server.destroy
             @channels.destroy
+            @server.destroy
+            render json: @id
         end
     end
 

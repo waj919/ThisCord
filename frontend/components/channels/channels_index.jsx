@@ -31,12 +31,12 @@ class ChannelsIndex extends React.Component {
     componentDidMount(){
         this.props.fetchUserServers(this.props.currentUserId)
     }
-
-
+    
 
     leaveServer(){
         this.props.leaveServer(this.props.server.id)
         this.props.history.push('/channel/@me')
+        this.props.fetchUserServers(this.props.currentUserId)
         this.serverSettings();
     }
 
@@ -70,7 +70,6 @@ class ChannelsIndex extends React.Component {
     
     serverSettings(){
         const action = !this.state.serverSettings;
-        this.props.fetchUserServers(this.props.currentUserId)
         this.setState({
             show: false,
             serverSettings: action,
@@ -140,25 +139,27 @@ class ChannelsIndex extends React.Component {
                             <li>Server Settings </li>
                             <i className="fas fa-cog"></i>
                         </ul>
+                        
                     </div>
 
                 </div>
 
                 <div className={this.state.confirm ? "confirm-modal show" : "channel-modal hide"}>
-                   
-                   <div className="confirm-modal-main">
-                       <form onSubmit={this.deleteServer} >
-                            <p className="confirm-delete">Delete '{this.props.server.name}' ?</p>
-                            <p className="confirm-message">Are you sure you want to delete <span>{this.props.server.name}</span>? This action cannot be undone. </p>
-                            <label>ENTER SERVER NAME</label>
-                            <input type="text" value={this.state.confirmName} onChange={this.input('confirmName')}/>
-                            <p className={this.state.error ? "confirm-error show" : "confirm-error hide"}>You didn't enter the server name correctly</p>
-                            <button className="confirm-button">Delete Server</button>
-                        </form>
-                        
-                        <div className="confirm-cancel" onClick={this.handleClick}>Cancel</div>
-                        
-                    </div> 
+                    <CSSTransition in={this.state.confirm} timeout={500} classNames="show-channel" unmountOnExit>
+                    <div className="confirm-modal-main">
+                        <form onSubmit={this.deleteServer} >
+                                <p className="confirm-delete">Delete '{this.props.server.name}' ?</p>
+                                <p className="confirm-message">Are you sure you want to delete <span>{this.props.server.name}</span>? This action cannot be undone. </p>
+                                <label>ENTER SERVER NAME</label>
+                                <input type="text" value={this.state.confirmName} onChange={this.input('confirmName')}/>
+                                <p className={this.state.error ? "confirm-error show" : "confirm-error hide"}>You didn't enter the server name correctly</p>
+                                <button className="confirm-button">Delete Server</button>
+                            </form>
+                            
+                            <div className="confirm-cancel" onClick={this.handleClick}>Cancel</div>
+                            
+                        </div> 
+                    </CSSTransition>
                 </div>
 
                 <CSSTransition in={this.state.serverSettings} timeout={500} classNames="show-channel" unmountOnExit>

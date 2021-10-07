@@ -40,6 +40,12 @@ export const fetchUserServers = (userId) => dispatch => {
     .then( (servers) => (dispatch(receiveServers(servers))))
 }
 
+
+export const createUserServer = (serverId) => dispatch => {
+    return serverUtil.createUserServer(serverId)
+    .then( (server) => (dispatch(receiveServer(server))))
+}
+
 export const createServer = (server) => dispatch => {
     return serverUtil.createServer(server)
     .then( (server) => (dispatch(receiveServer(server))))

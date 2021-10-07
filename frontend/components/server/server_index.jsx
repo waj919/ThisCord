@@ -84,7 +84,6 @@ class ServerIndex extends React.Component {
             show: false
         })
         this.props.fetchUserServers(this.props.currentUserId)
-        debugger
         // this.props.history.push(`/channel/${this.props.servers[this.]}`)
 
     }
@@ -98,9 +97,8 @@ class ServerIndex extends React.Component {
     handleJoinSubmit(e){
         let allServers = this.state.allServers.responseJSON
         this.props.createUserServer(this.state.value)
-        // debugger
-        this.props.fetchUserServers(this.props.currentUserId)
         this.props.history.push(`/channel/${this.state.value}/${allServers[allServers.findIndex(ele => ele.id === parseInt(this.state.value))].servers[0].id}`)
+        this.props.fetchUserServers(this.props.currentUserId)
         this.setState({
             joinShow: false
         })

@@ -18,6 +18,10 @@ class DmIndex extends React.Component {
 
     }
 
+    componentDidMount(){
+        this.props.fetchUserServers(this.props.currentUserId)
+    }
+
     componentDidUpdate(prevProps, prevState){
         if(prevProps.dmChannels.length != this.props.dmChannels.length){
             this.props.fetchDmChannels();
@@ -46,7 +50,6 @@ class DmIndex extends React.Component {
             user2_id: this.state.value
         }
         for (let i = 0; i < this.props.dmChannels.length; i++) {
-            debugger
          if(this.props.dmChannels[i].user_1.id === parseInt(this.state.value) || this.props.dmChannels[i].user_2.id === parseInt(this.state.value) ){
                 console.log("user dm exists!");
                 this.setState({
