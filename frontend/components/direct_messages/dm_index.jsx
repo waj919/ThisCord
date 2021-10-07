@@ -51,7 +51,6 @@ class DmIndex extends React.Component {
         }
         for (let i = 0; i < this.props.dmChannels.length; i++) {
          if(this.props.dmChannels[i].user_1.id === parseInt(this.state.value) || this.props.dmChannels[i].user_2.id === parseInt(this.state.value) ){
-                console.log("user dm exists!");
                 this.setState({
                     dmExist: true,
                 })
