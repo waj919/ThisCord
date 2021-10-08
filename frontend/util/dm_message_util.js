@@ -1,7 +1,7 @@
 export const fetchDmMessages = (dm_channel_id) => {
     return $.ajax({
         method: "get",
-        url: `/api/messages`,
+        url: `/api/dm_messages`,
         data: {dm_channel_id}
     })
 }

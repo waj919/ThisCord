@@ -12,10 +12,14 @@ const receiveMessages = (messages) => ({
     messages
 })
 
-const receiveMessage = (message) => ({
-    type: RECEIVE_MESSAGE,
-    message
-})
+const receiveMessage = (message) => {
+    
+    return {
+        type: RECEIVE_MESSAGE,
+        message
+    }
+
+}
 
 const removeMessage = (message) => ({
     type: REMOVE_MESSAGE,

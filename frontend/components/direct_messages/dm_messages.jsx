@@ -3,13 +3,18 @@ import DmMessageForm from './dm_message_form';
 
 class DmMessages extends React.Component {
 
+    componentDidMount(){
+        this.props.fetchDmMessages(this.props.dmChannelId)
+    }
+
     render(){
         if(!this.props.dmChannel) return null
+        if(!this.props.dmMessages) return null
         return(
             <div className="dm-messages">
                 <ul className="dm-messages-ul">
-                    {this.props.dmChannel.messages.map(message => {
-                        let username = this.props.dmChannel.user_1.id === message.sender_id ? this.props.dmChannel.user_1.username : this.props.dmChannel.user_2.username 
+                    {this.props.dmMessages.map(message => {
+                        // let username = this.props.dmChannel.user_1.id === message.sender_id ? this.props.dmChannel.user_1.username : this.props.dmChannel.user_2.username 
                         return  <li key={message.id} className="dm-messages-li">
                                     <img className="dm-message-logo" src={window.logo} />
                                     
@@ -17,7 +22,7 @@ class DmMessages extends React.Component {
                                         <div className="dm-info">
 
                                            <div className="dm-name">
-                                                {username}
+                                                {message.user.username}
                                             </div>
 
                                             <div className="dm-message-time">
@@ -39,7 +44,12 @@ class DmMessages extends React.Component {
                     
                 </ul>
 
-                <DmMessageForm createDmMessage={this.props.createDmMessage} dmChannel={this.props.dmChannel} />
+                <DmMessageForm 
+                    currentUserId={this.props.currentUserId}
+                    createDmMessage={this.props.createDmMessage} 
+                    dmChannel={this.props.dmChannel} 
+                    fetchDmMessages={this.props.fetchDmMessages}
+                />
             </div>
         )
     }

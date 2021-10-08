@@ -3,11 +3,11 @@ import ServerIndex from "./server_index"
 import { createServer, fetchUserServers, createUserServer, removeServer, updateServer, leaveServer} from "../../actions/server_actions";
 import { fetchServers } from "../../util/server_util";
 import { logout } from "../../actions/session_actions";
-import { createChannel, fetchChannel, updateChannel, deleteChannel } from "../../actions/channel_actions";
+import { createChannel, updateChannel, deleteChannel } from "../../actions/channel_actions";
 import { createMessage, deleteMessage, fetchMessages, updateMessage } from "../../actions/message_actions";
 import { createDmChannel, fetchDmChannels } from "../../actions/dm_channel_actions";
 import { fetchAllUsers } from "../../actions/user_actions";
-import { createDmMessage } from "../../actions/dm_message_actions"
+import { createDmMessage, fetchDmMessages } from "../../actions/dm_message_actions"
 
 
 const mSTP = (state, ownProps) => {
@@ -19,9 +19,11 @@ const mSTP = (state, ownProps) => {
         username: state.session.currentUser.username,
         server: state.entities.server[ownProps.match.params.serverId],
         channelId: parseInt(ownProps.match.params.channelId),
+        dmChannelId: parseInt(ownProps.match.params.dmChannelId),
         messages: Object.values(state.entities.message),
         dmChannels: Object.values(state.entities.dmChannels),
-        dmChannel: state.entities.dmChannels[ownProps.match.params.dmChannelId]
+        dmChannel: state.entities.dmChannels[ownProps.match.params.dmChannelId],
+        dmMessages: Object.values(state.entities.dmMessages)
     }
 }
 
@@ -42,6 +44,7 @@ const mDTP = dispatch => ({
     updateServer: server => dispatch(updateServer(server)),
     updateChannel: channel => dispatch(updateChannel(channel)),
     fetchDmChannels: () => dispatch(fetchDmChannels()),
+    fetchDmMessages : dmChannelId => dispatch(fetchDmMessages(dmChannelId)),
     createDmMessage: (dmMessage) => dispatch(createDmMessage(dmMessage)),
     createDmChannel: (dmChannel) => dispatch(createDmChannel(dmChannel)),
     logout: () => dispatch(logout())

@@ -1,1 +1,1 @@
-json.extract! @dm_message, :body, :dm_channel_id, :user
+json.extract! @dm_message, :id, :body, :dm_channel_id, :created_at, :user

@@ -10,10 +10,12 @@ const receiveDmMessages = (dmMessages) => ({
     dmMessages
 })
 
-const receiveDmMessage = (dmMessage) => ({
-    type: RECEIVE_DM_MESSAGE,
-    dmMessage
-})
+const receiveDmMessage = (dmMessage) => {
+    return {
+        type: RECEIVE_DM_MESSAGE,
+        dmMessage
+    }
+}
 
 const removeDmMessage = (dmMessage) => ({
     type: REMOVE_DM_MESSAGE,

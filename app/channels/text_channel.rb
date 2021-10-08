@@ -11,8 +11,4 @@ class TextChannel < ApplicationCable::Channel
     TextChannel.broadcast_to(@channel, message: data['message'])
   end
 
-  def unsubscribed;
-
-  end
-
 end

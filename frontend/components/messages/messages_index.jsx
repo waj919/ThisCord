@@ -35,13 +35,16 @@ class MessageIndex extends React.Component {
                                         username={this.props.username} 
                                         deleteMessage={this.props.deleteMessage}
                                         updateMessage={this.props.updateMessage}
+                                        currentUserId={this.props.currentUserId}
                                     />
                         })}         
                     </ul>
                     <MessageForm 
+                        currentUserId={this.props.currentUserId}
                         createMessage={this.props.createMessage} 
                         channelId={this.props.channelId} 
                         channelName={this.props.server.channels[this.props.server.channels.findIndex(channel => channel.id === this.props.channelId)].name}
+                        fetchMessages={this.props.fetchMessages}
                     />
                 </div>
 

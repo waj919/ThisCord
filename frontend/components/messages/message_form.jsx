@@ -34,12 +34,15 @@ class MessageForm extends React.Component {
 
     subscribe() {
         const channelId = this.props.channelId
+      
+
         this.subscription = consumer.subscriptions.create(
           { channel: 'TextChannel', id: channelId },
           {
             received: data => {
                 this.props.createMessage(data.message)
-            },
+               
+            }
           }
         )
     }
@@ -56,9 +59,11 @@ class MessageForm extends React.Component {
         this.subscription.send({
             message: {
                 body: this.state.body,
-                channel_id: this.props.channelId
+                channel_id: this.props.channelId,
+                sender_id: this.props.currentUserId
             }
         })
+        
         this.setState({
             body: ""
         })

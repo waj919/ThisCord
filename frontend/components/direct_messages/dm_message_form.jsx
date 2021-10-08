@@ -21,19 +21,16 @@ class DmMessageForm extends React.Component {
 
     componentDidUpdate(prevProps){
         if(prevProps.dmChannel.id !== this.props.dmChannel.id){
-            this.setState({ 
-                body: ""
-            })
+            // this.setState({ 
+            //     body: ""
+            // })
+            this.props.fetchDmMessages(this.props.dmChannel.id)
             this.subscription.unsubscribe()
             this.subscribe();
         }
     }
 
 
-    //TextChannel#receive({"message"=>{"body"=>"yo yo", "channel_id"=>3}})
-    // [ActionCable] Broadcasting to text:Z2lkOi8vdGhpcy1jb3JkL0NoYW5uZWwvMw: {:message=>{"body"=>"yo yo", "channel_id"=>3}}
-    // TextChannel transmitting {"message"=>{"body"=>"yo yo", "channel_id"=>3}} (via streamed from text:Z2lkOi8vdGhpcy1jb3JkL0NoYW5uZWwvMw)
-    // TextChannel transmitting {"message"=>{"body"=>"yo yo", "channel_id"=>3}} (via streamed from text:Z2lkOi8vdGhpcy1jb3JkL0NoYW5uZWwvMw)
     componentWillUnmount() {
         if (this.subscription) {
           this.subscription.unsubscribe();
@@ -57,6 +54,7 @@ class DmMessageForm extends React.Component {
         e.preventDefault();
         this.subscription.send({
             message: {
+                sender_id: this.props.currentUserId,
                 body: this.state.body,
                 dm_channel_id: this.props.dmChannel.id
             }

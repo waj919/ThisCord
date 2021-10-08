@@ -2,8 +2,7 @@ class Api::DmMessagesController <  ApplicationController
 
     def index
         @dm_messages = DmMessage.where(dm_channel_id: params[:dm_channel_id])
-
-        render "api/dm_messages/show"
+        render "api/dm_messages/index"
 
     end
 
@@ -15,7 +14,6 @@ class Api::DmMessagesController <  ApplicationController
 
     def create
         @dm_message = DmMessage.new(dm_messages_params)
-        @dm_message.sender_id = current_user.id
         @dm_message.save
         render "api/dm_messages/show"
     end
@@ -33,6 +31,6 @@ class Api::DmMessagesController <  ApplicationController
     private
 
     def dm_messages_params
-        params.require(:dm_message).permit(:dm_channel_id, :body)
+        params.require(:dm_message).permit(:sender_id, :dm_channel_id, :body)
     end
 end
