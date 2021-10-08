@@ -24,9 +24,9 @@ class DmMessageForm extends React.Component {
             // this.setState({ 
             //     body: ""
             // })
-            this.props.fetchDmMessages(this.props.dmChannel.id)
             this.subscription.unsubscribe()
             this.subscribe();
+            this.props.fetchDmMessages(this.props.dmChannel.id)
         }
     }
 
@@ -43,7 +43,8 @@ class DmMessageForm extends React.Component {
           { channel: 'DirectMessageChannel', id: dmChannelId },
           {
             received: data => {
-                this.props.createDmMessage(data.message)
+                // this.props.createDmMessage(data.message)
+                this.props.fetchDmMessages(this.props.dmChannel.id)
             },
           }
         )
@@ -66,11 +67,11 @@ class DmMessageForm extends React.Component {
 
 
     input(e){
-    e.preventDefault();
-    this.setState({
-        body: e.currentTarget.value
-    })
-}
+        e.preventDefault();
+        this.setState({
+            body: e.currentTarget.value
+        })
+    }
 
     render(){
        return(

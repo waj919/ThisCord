@@ -33,14 +33,14 @@ class MessageForm extends React.Component {
  
 
     subscribe() {
-        const channelId = this.props.channelId
-      
+        const channelId = this.props.channelId  
 
         this.subscription = consumer.subscriptions.create(
           { channel: 'TextChannel', id: channelId },
           {
             received: data => {
-                this.props.createMessage(data.message)
+                // this.props.createMessage(data.message)
+                this.props.fetchMessages(this.props.channelId)
                
             }
           }

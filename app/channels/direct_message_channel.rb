@@ -7,6 +7,8 @@ class DirectMessageChannel < ApplicationCable::Channel
     end
     
     def receive(data)
+      @dm = DmMessage.new(data['message'])
+      @dm.save
       DirectMessageChannel.broadcast_to(@dm_channel, message: data['message'])
     end
   

@@ -8,6 +8,8 @@ class TextChannel < ApplicationCable::Channel
   end
 
   def receive(data)
+    @message = Message.new(data['message'])
+    @message.save
     TextChannel.broadcast_to(@channel, message: data['message'])
   end
 
