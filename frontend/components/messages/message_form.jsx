@@ -77,6 +77,7 @@ class MessageForm extends React.Component {
                             className="message-input" 
                             placeholder={`Message #${this.props.channelName}`}
                             value={this.state.body} 
+                            maxLength="4000"
                             onChange={this.input} />
                     <button type="submit" id="message-input-button">Submit</button>
                 </form>

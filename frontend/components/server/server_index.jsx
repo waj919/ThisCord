@@ -186,7 +186,7 @@ class ServerIndex extends React.Component {
                                 <p>
                                     Your server is where you and your friends hang out.Make yours and start talking.
                                 </p>
-                                <input id="server-input" type="text" onChange={this.input}/>
+                                <input id="server-input" type="text" onChange={this.input} maxLength="50"/>
                             
                                 <br />
                                 <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false }> Create Server</button>

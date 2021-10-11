@@ -57,6 +57,15 @@ class ChannelsIndexItem extends React.Component {
 
 
     render(){
+
+        let cog;
+
+        if(this.props.currentUserId === this.props.server.creator_id) {
+            cog = <i onClick={this.showModal} className="channel-cog fas fa-cog"></i>
+        } else {
+            cog = <i className="no-channel-cog fas fa-cog"></i>
+
+        }
         return(
             <div>
                <Link className="channel-link" to={`/channel/${this.props.channel.server_id}/${this.props.channel.id}`}> 
@@ -66,12 +75,13 @@ class ChannelsIndexItem extends React.Component {
                     <div className="channel-name">
                         {this.props.channel.name}
                     </div>
-                    <i onClick={this.showModal} className="channel-cog fas fa-cog"></i>
-                     
+                    {cog}                     
                 </Link>
                 
                 <CSSTransition in={this.state.show} timeout={500} classNames="show-edit" unmountOnExit>
                     <div className={this.state.show ? "channel-modal show" : "channel-modal hide"}>
+
+                
 
                 
                         <form onSubmit={this.handleSubmit} className="channel-modal-edit " >
@@ -87,11 +97,12 @@ class ChannelsIndexItem extends React.Component {
                             
                                 <br />
                                 <input type="submit" className="edit-button" value="Edit Channel" />
+                                <button onClick={this.handleDelete} className="delete-button">Delete Channel</button>
                         </form>
-                        
-                        <button onClick={this.handleDelete} className="delete-button">Delete Channel</button>
-                            
+                      
+                          
                     </div>
+                
                 </CSSTransition>
                
 

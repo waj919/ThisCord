@@ -29,6 +29,7 @@ class Api::ChannelsController < ApplicationController
         @server = Server.find_by(id: @channel.server_id)
         if @server.creator_id != current_user.id
             render json: ["Must be owner to delete channel"], status: 400
+            
         else
             @channel.destroy
         end

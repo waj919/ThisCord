@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column-reverse;
     position: absolute;
-    bottom: 80px;
+    bottom: 67px;
     left: 0;
     // padding-left: 5px;
     width: 100%;
@@ -44,6 +44,7 @@
     li, .dm-messages-li {
         display: flex;
         font-size: 21px;
+        width: 95%;
         padding-top: 16px;
         padding-bottom: 16px;
         // padding-right: 10px; 
@@ -63,19 +64,16 @@
         }
     }
     li:hover {
-        width: 96%;
         border-radius: 15px;
         background: #32353b;
+        
     }
 
     li:hover i {
             display: block;
             cursor: pointer;
-            text-align: right;
-            margin-right: 38px;
             align-self: center;
-            width: 20px;
-        
+            width: 19px;
     }
 }
 

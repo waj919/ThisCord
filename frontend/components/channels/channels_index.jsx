@@ -130,9 +130,9 @@ class ChannelsIndex extends React.Component {
             <div id="channels-index">
                 
                 <div id="server-name">
-                    <p className="channel-server-name">
+                    <div className="channel-server-name">
                         {this.props.server.name}
-                    </p>
+                    </div>
                     <div id="server-dropdown"  onClick={this.serverSettingsDropdown} >
                         <i className="fas fa-chevron-down"></i>
                         <ul id="dropdown-list" onClick={this.serverSettings} className={this.state.show ? "showSettings" : "hide"} >
@@ -212,6 +212,8 @@ class ChannelsIndex extends React.Component {
                                             channel={channel}
                                             updateChannel={this.props.updateChannel}
                                             deleteChannel={this.props.deleteChannel}
+                                            currentUserId={this.props.currentUserId}
+                                            server={this.props.server}
                                         />
                                 </li>
                     })} 
@@ -239,7 +241,7 @@ class ChannelsIndex extends React.Component {
                                     <div className="input-hashtag">
                                         &#35;
                                     </div>
-                                    <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input('name')}/>
+                                    <input id="channel-input" placeholder="new-channel" type="text" onChange={this.input('name')} maxLength="50" />
                                 
                                     <br />
                                     <button className="create-button" disabled={(this.state.name.length <= 0) ? true : false}>Create Channel </button>

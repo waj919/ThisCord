@@ -67,7 +67,9 @@
         .channel-name, .hashtag {
             display: inline;
             float: left;
-            width: 90%;
+            width: 75%;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-size: 1rem;
             text-transform: lowercase;
         }
@@ -107,6 +109,10 @@
         padding-top: 16px;
         padding-bottom: 20px;
         width: 248px;
+        white-space: nowrap;
+        height: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
 
@@ -117,8 +123,6 @@
             padding-top: 10px;
             padding-left: 10px;
             width: 248px;
-
-            
         }
     }
 
@@ -139,7 +143,13 @@
     color: white;
 }
 
+.channel-li > div > a > .no-channel-cog {
+    color: #2f3136;
+}
 
+.channel-li:hover > div > a > .no-channel-cog{
+    color: #34373c;
+}
 .channel-modal {
         z-index: 1;
         position: fixed;
@@ -442,8 +452,8 @@
 
 .delete-button {
     position: fixed;
-    right: 50%;
-    top: 498px;
+    right: 52%;
+    top: 128px;
     height: 35px;
     background-color: red;
     border: 1px solid red;

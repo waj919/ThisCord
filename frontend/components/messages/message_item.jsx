@@ -51,38 +51,43 @@ class MessageItem extends React.Component {
             remove = null
         }
         return(
-            <li  className="message-li">
-                <div className="chat">
-                    <img src={window.logo} alt="" />
-                    <div>
-                        <div className="message-info">
-                            <p className="message-name">
-                                {this.props.message.sender.username} 
-                            </p>
-                            <p className="message-time">
-                            {this.props.message.created_at.slice(5,7)}/
-                            {this.props.message.created_at.slice(8,10)}/
-                            {this.props.message.created_at.slice(0,4)} at &nbsp;
-                            {this.props.message.created_at.slice(11, 16)}
+            <li  className="message-li" key={this.props.message.id}>
+                  
+                  <div>
+                    <div className="chat">
+                        <img src={window.logo} alt="" />
+                        <div>
+                            <div className="message-info">
+                                <p className="message-name">
+                                    {this.props.message.sender.username} 
+                                </p>
+                                <p className="message-time">
+                                {this.props.message.created_at.slice(5,7)}/
+                                {this.props.message.created_at.slice(8,10)}/
+                                {this.props.message.created_at.slice(0,4)} at &nbsp;
+                                {this.props.message.created_at.slice(11, 16)}
 
-                            </p>
+                                </p>
+                            </div>
+                            <div className="message-content">
+                                {this.props.message.body}
+                            </div> 
+
                         </div>
-                        <div className="message-content">
-                            {this.props.message.body}
-                        </div> 
+                    </div>
+                    {/* <i onClick={this.showModal}className="far fa-edit"></i> */}
+                
+                    <form onSubmit={this.handleUpdate} className={ this.state.show ? "edit-message-show" : "edit-message-hide"}>
+                        <input className="edit-message-input" type="text" value={this.state.body} onChange={this.input} />
+                        <div className="edit-enter">
+                            <div className="enter-to">enter to &nbsp;</div>
+                            <div className="save">save</div>
+                        </div>
+                    </form>
+                                
 
-                    </div>
                 </div>
-                {/* <i onClick={this.showModal}className="far fa-edit"></i> */}
                 {remove}
-                <form onSubmit={this.handleUpdate} className={ this.state.show ? "edit-message-show" : "edit-message-hide"}>
-                    <input className="edit-message-input" type="text" value={this.state.body} onChange={this.input} />
-                    <div className="edit-enter">
-                        <div className="enter-to">enter to &nbsp;</div>
-                        <div className="save">save</div>
-                    </div>
-                </form>
-            
             </li>
         )
     }
