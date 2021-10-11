@@ -2,16 +2,10 @@ import React from 'react';
 import DmMessageForm from './dm_message_form';
 
 class DmMessages extends React.Component {
-    
 
-    // componentDidMount(){
-    //     this.props.fetchDmMessages(this.props.dmChannelId)
-    // }
-
-
-    componentDidUpdate(prevProps,prevState){
-        if (this.props.match.params.dmChannelId !== undefined && prevProps.match.params.dmChannelId !== this.props.match.params.dmChannelId){
-            // console.log(this.props.match.params.dmChannelId);
+    componentDidUpdate(prevProps, prevState){
+        if (this.props.match.params.dmChannelId !== undefined && 
+            prevProps.match.params.dmChannelId !== this.props.match.params.dmChannelId){
             this.props.fetchDmMessages(this.props.match.params.dmChannelId)
         }
     }
@@ -23,7 +17,6 @@ class DmMessages extends React.Component {
             <div className="dm-messages">
                 <ul className="dm-messages-ul">
                     {this.props.dmMessages.map(message => {
-                        // let username = this.props.dmChannel.user_1.id === message.sender_id ? this.props.dmChannel.user_1.username : this.props.dmChannel.user_2.username 
                         return  <li key={message.id} className="dm-messages-li">
                                     <img className="dm-message-logo" src={window.logo} />
                                     

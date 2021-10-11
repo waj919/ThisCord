@@ -11,7 +11,6 @@ class DmIndex extends React.Component {
             dmExist: false,
             value: ""
         }
-        // this.user = this.props.dmChannel
         this.showModal = this.showModal.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)

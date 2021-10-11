@@ -12,7 +12,6 @@ const messageReducer = (state= {}, action) => {
             nextState[action.message.id] = action.message;
             return nextState;
         case REMOVE_MESSAGE: 
-        debugger
             delete nextState[action.message]
             return nextState;
         default:

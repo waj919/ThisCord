@@ -39,7 +39,6 @@ class MessageForm extends React.Component {
           { channel: 'TextChannel', id: channelId },
           {
             received: data => {
-                // this.props.createMessage(data.message)
                 this.props.fetchMessages(this.props.channelId)
                
             }

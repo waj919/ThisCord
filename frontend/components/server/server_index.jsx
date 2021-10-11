@@ -67,7 +67,6 @@ class ServerIndex extends React.Component {
         else if(prevProps.channelId !== this.props.channelId){
             this.props.fetchMessages(this.props.channelId)
         }
-        // this.props.fetchUserServers(this.props.currentUserId)
     }
     
     input(e){
@@ -87,7 +86,6 @@ class ServerIndex extends React.Component {
             show: false
         })
         this.props.fetchUserServers(this.props.currentUserId)
-        // this.props.history.push(`/channel/${this.props.servers[this.]}`)
 
     }
 

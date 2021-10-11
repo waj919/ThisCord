@@ -21,9 +21,7 @@ class DmMessageForm extends React.Component {
 
     componentDidUpdate(prevProps){
         if(prevProps.dmChannel.id !== this.props.dmChannel.id){
-            // this.setState({ 
-            //     body: ""
-            // })
+           
             this.subscription.unsubscribe()
             this.subscribe();
             this.props.fetchDmMessages(this.props.dmChannel.id)
@@ -43,7 +41,6 @@ class DmMessageForm extends React.Component {
           { channel: 'DirectMessageChannel', id: dmChannelId },
           {
             received: data => {
-                // this.props.createDmMessage(data.message)
                 this.props.fetchDmMessages(this.props.dmChannel.id)
             },
           }
