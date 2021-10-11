@@ -26,6 +26,7 @@ class DmIndex extends React.Component {
         if(prevProps.dmChannels.length != this.props.dmChannels.length){
             this.props.fetchDmChannels();
         }
+        
     }
 
     showModal(){

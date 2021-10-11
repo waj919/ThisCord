@@ -2,9 +2,18 @@ import React from 'react';
 import DmMessageForm from './dm_message_form';
 
 class DmMessages extends React.Component {
+    
 
-    componentDidMount(){
-        this.props.fetchDmMessages(this.props.dmChannelId)
+    // componentDidMount(){
+    //     this.props.fetchDmMessages(this.props.dmChannelId)
+    // }
+
+
+    componentDidUpdate(prevProps,prevState){
+        if (this.props.match.params.dmChannelId !== undefined && prevProps.match.params.dmChannelId !== this.props.match.params.dmChannelId){
+            // console.log(this.props.match.params.dmChannelId);
+            this.props.fetchDmMessages(this.props.match.params.dmChannelId)
+        }
     }
 
     render(){

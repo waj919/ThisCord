@@ -248,6 +248,10 @@ class ServerIndex extends React.Component {
                     currentUserId={this.props.currentUserId}
                     createDmChannel={this.props.createDmChannel}
                     fetchUserServers={this.props.fetchUserServers}
+                    dmChannelId={this.props.dmChannelId}
+                    fetchDmMessages={this.props.fetchDmMessages}
+
+
                 />
 
                 <DmMessages 
@@ -256,6 +260,7 @@ class ServerIndex extends React.Component {
                     createDmMessage={this.props.createDmMessage}
                     fetchDmMessages={this.props.fetchDmMessages}
                     dmMessages={this.props.dmMessages}
+                    match={this.props.match}
                     dmChannelId={this.props.dmChannelId}
                 />
 
