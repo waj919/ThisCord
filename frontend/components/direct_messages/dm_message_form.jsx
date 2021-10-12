@@ -77,6 +77,7 @@ class DmMessageForm extends React.Component {
             <input  type="text" 
                     className="direct-message-input" 
                     value={this.state.body} 
+                    placeholder={`Message #${this.props.user}`}
                     onChange={this.input} />
             <button type="submit" id="message-input-button">Submit</button>
         </form>

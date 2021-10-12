@@ -26,6 +26,7 @@ class ChannelsIndex extends React.Component {
         this.deleteServer = this.deleteServer.bind(this)
         this.leaveServer = this.leaveServer.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.createDm = this.createDm.bind(this)
     }
 
     componentDidMount(){
@@ -38,6 +39,26 @@ class ChannelsIndex extends React.Component {
         this.props.fetchUserServers(this.props.currentUserId)
         this.serverSettings();
         this.props.history.push('/channel/@me')
+    }
+
+    createDm(userId){
+        return e => {
+            let {dmChannels} = this.props
+            let dmIndex = dmChannels.findIndex(ele => ele.user_1.id === userId || ele.user_2.id === userId )
+            if(dmIndex !== -1){
+                this.props.history.push(`/channel/@me/${dmChannels[dmIndex].id}`)
+            }else {
+                
+                let dmChannel = {
+                    user1_id: this.props.currentUserId,
+                    user2_id: userId
+                }
+                this.props.createDmChannel(dmChannel)
+                this.props.fetchDmChannels(this.props.currentUserId)
+                this.props.history.push('/channel/@me')  
+            }
+            
+        }
     }
 
     handleClick(e){
@@ -260,6 +281,8 @@ class ChannelsIndex extends React.Component {
                             return  <li key={user.id} className="member-li">
                                         <img src={window.logo} className="members-logo"/>
                                         {user.username}
+                                        
+                                        <i onClick={this.createDm(user.id)} className={this.props.currentUserId !== user.id ? "fas fa-comment-alt" : ""}></i>
                                     </li>
                         })}
                     </ul>

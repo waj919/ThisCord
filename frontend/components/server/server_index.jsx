@@ -222,6 +222,12 @@ class ServerIndex extends React.Component {
                     channelId={this.props.channelId}
                     fetchUserServers={this.props.fetchUserServers}
                     currentUserId={this.props.currentUserId}
+                    createDmChannel={this.props.createDmChannel}
+                    fetchDmChannels={this.props.fetchDmChannels}
+                    dmChannels={this.props.dmChannels}
+                    fetchDmMessages={this.props.fetchDmMessages}
+
+
                 />
 
                 <MessageIndex 
@@ -248,8 +254,7 @@ class ServerIndex extends React.Component {
                     fetchUserServers={this.props.fetchUserServers}
                     dmChannelId={this.props.dmChannelId}
                     fetchDmMessages={this.props.fetchDmMessages}
-
-
+                    history={this.props.history}
                 />
 
                 <DmMessages 

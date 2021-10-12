@@ -13,8 +13,17 @@ class DmMessages extends React.Component {
     render(){
         if(!this.props.dmChannel) return null
         if(!this.props.dmMessages) return null
+        let dm;
+        if(this.props.dmChannel.user_1.id === this.props.currentUserId){
+            dm = this.props.dmChannel.user_2.username
+        } else {
+            dm =this.props.dmChannel.user_1.username
+        }
         return(
             <div className="dm-messages">
+                <div className="dm-user-name">
+                    {dm}
+                </div>
                 <ul className="dm-messages-ul">
                     {this.props.dmMessages.map(message => {
                         return  <li key={message.id} className="dm-messages-li">
@@ -48,6 +57,7 @@ class DmMessages extends React.Component {
 
                 <DmMessageForm 
                     currentUserId={this.props.currentUserId}
+                    user={dm}
                     createDmMessage={this.props.createDmMessage} 
                     dmChannel={this.props.dmChannel} 
                     fetchDmMessages={this.props.fetchDmMessages}

@@ -72,9 +72,20 @@
 
 }
 
+.dm-user-name{
+    border-bottom: 1px solid #232527;
+    width: 115%;
+    margin-left: -11px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-indent: 20px;
+    color: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 30px;
+}
 .dm-messages-ul{
     width: 113%;
-    height: 92%;
+    height: 85%;
     display: flex;
     flex-direction: column-reverse;
     position: absolute;
