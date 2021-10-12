@@ -28,7 +28,7 @@ class MessageIndex extends React.Component {
                         </div>
                     </div>
                     <ul className="message-ul">
-                        {this.props.messages.reverse().map(message => {
+                        {this.props.messages.map(message => {
                             return <MessageItem 
                                         key={message.id} 
                                         message={message} 
@@ -37,7 +37,7 @@ class MessageIndex extends React.Component {
                                         updateMessage={this.props.updateMessage}
                                         currentUserId={this.props.currentUserId}
                                     />
-                        })}         
+                        }).reverse()}         
                     </ul>
                     <MessageForm 
                         currentUserId={this.props.currentUserId}

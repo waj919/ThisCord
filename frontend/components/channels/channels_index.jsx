@@ -35,9 +35,9 @@ class ChannelsIndex extends React.Component {
 
     leaveServer(){
         this.props.leaveServer(this.props.server.id)
-        this.props.history.push('/channel/@me')
         this.props.fetchUserServers(this.props.currentUserId)
         this.serverSettings();
+        this.props.history.push('/channel/@me')
     }
 
     handleClick(e){
@@ -51,8 +51,8 @@ class ChannelsIndex extends React.Component {
         if(this.state.confirmName === this.props.server.name){
             this.props.removeServer(this.props.server.id)
             this.props.fetchUserServers(this.props.currentUserId)
-            this.props.history.push('/channel/@me')
             this.serverSettings();
+            this.props.history.push('/channel/@me')
         } else {
             this.setState({
                 error: true
@@ -214,6 +214,8 @@ class ChannelsIndex extends React.Component {
                                             deleteChannel={this.props.deleteChannel}
                                             currentUserId={this.props.currentUserId}
                                             server={this.props.server}
+                                            fetchUserServers={this.props.fetchUserServers}
+                                            history={this.props.history}
                                         />
                                 </li>
                     })} 

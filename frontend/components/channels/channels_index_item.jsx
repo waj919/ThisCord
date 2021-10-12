@@ -20,10 +20,12 @@ class ChannelsIndexItem extends React.Component {
 
     handleDelete(){
         this.props.deleteChannel(this.props.channel.id)
+        this.props.fetchUserServers(this.props.currentUserId)
         this.setState({
             name: "",
             show: false
         })
+        this.props.history.push(`/channel/${this.props.server.id}/${this.props.server.channels[0].id}`)
     }
 
 
@@ -60,7 +62,7 @@ class ChannelsIndexItem extends React.Component {
 
         let cog;
 
-        if(this.props.currentUserId === this.props.server.creator_id) {
+        if(this.props.currentUserId === this.props.server.creator_id && this.props.channel.name !== 'general') {
             cog = <i onClick={this.showModal} className="channel-cog fas fa-cog"></i>
         } else {
             cog = <i className="no-channel-cog fas fa-cog"></i>

@@ -1,1 +1,1 @@
-json.extract! @channel, :name, :server_id, :messages
+json.extract! @channel, :id, :name, :server_id, :messages
