@@ -16,20 +16,20 @@ class Splash extends React.Component {
                         </div>
                         <div className='splash-nav-links'>
                             <div className="live-links">
-                                <i class="fab fa-github logo"></i>
-                                <a href="https://github.com/waj919/ThisCord" id="github">
+                                <i className="fab fa-github logo"></i>
+                                <a href="https://github.com/waj919/ThisCord"  target="_blank" rel="noopener noreferrer" id="github">
                                     GitHub
                                 </a>
                             </div>
                             <div className="live-links">
-                                <i class="fab fa-linkedin logo"></i>
-                                <a href="https://www.linkedin.com/in/wajahat-shoukat/" id="linkedin">
+                                <i className="fab fa-linkedin logo"></i>
+                                <a href="https://www.linkedin.com/in/wajahat-shoukat/"  target="_blank" rel="noopener noreferrer" id="linkedin">
                                 LinkedIn
                                 </a>
                             </div>
                             <div className="live-links">
-                                <i class="fab fa-angellist logo"></i>
-                                <a href="https://angel.co/u/wajahat-shoukat" id="angellist">
+                                <i className="fab fa-angellist logo"></i>
+                                <a href="https://angel.co/u/wajahat-shoukat"  target="_blank" rel="noopener noreferrer" id="angellist">
                                     AngelList
                                 </a>
                             </div>

@@ -50,15 +50,6 @@ class DmIndex extends React.Component {
             user1_id: this.props.currentUserId,
             user2_id: this.state.value
         }
-        // for (let i = 0; i < this.props.dmChannels.length; i++) {
-        //  if(this.props.dmChannels[i].user_1.id === parseInt(this.state.value) || this.props.dmChannels[i].user_2.id === parseInt(this.state.value) ){
-        //         this.setState({
-        //             dmExist: true,
-        //         })
-        //         return;
-        //     }
-        // }
-
         this.props.createDmChannel(dmChannel)
         this.setState({
             show: false,
