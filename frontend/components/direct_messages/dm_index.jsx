@@ -1,5 +1,7 @@
 import React from 'react';
+import consumer from '../../consumer';
 import DmItem from './dm_item';
+
 
 
 class DmIndex extends React.Component {
@@ -14,19 +16,52 @@ class DmIndex extends React.Component {
         this.showModal = this.showModal.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.subscription = null
 
     }
 
     componentDidMount(){
         this.props.fetchUserServers(this.props.currentUserId)
+        this.subscribe()
     }
 
     componentDidUpdate(prevProps, prevState){
+        // if(prevProps.dmChannelId !== this.props.dmChannelId){
+        //     this.subscription.unsubscribe()
+        //     this.subscribe();
+        // }
         if(prevProps.dmChannels.length != this.props.dmChannels.length){
             this.props.fetchDmChannels();
             // this.props.history.push(`/channel/@me/${this.props.dmChannels[this.props.dmChannels.length-1].id}`)
         }
         
+    }
+
+    componentWillUnmount() {
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+        }
+    }
+
+    subscribe() {
+        // const userId = this.props.currentUserId  
+
+        this.subscription = consumer.subscriptions.create(
+          { channel: 'UserChannel', id: this.state.value },
+          {
+            received: data => {
+                console.log('in received');
+                this.props.fetchDmChannels()
+                this.setState({
+                    show: false,
+                    dmExist: false,
+                    value: ""
+                })
+                // this.props.fetchMessages(this.props.channelId)
+                // this.props.history.push('/channel/@me')
+            }
+          }
+        )
     }
 
     showModal(){
@@ -51,11 +86,13 @@ class DmIndex extends React.Component {
             user2_id: this.state.value
         }
         this.props.createDmChannel(dmChannel)
-        this.setState({
-            show: false,
-            dmExist: false,
-            value: ""
+        this.subscription.send({
+            message: {
+                user1_id: this.props.currentUserId,
+                user2_id: this.state.value
+            }
         })
+       
     }
     
 

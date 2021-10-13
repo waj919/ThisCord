@@ -1,6 +1,7 @@
 import React from 'react';
 import ChannelsIndexItem from './channels_index_item';
 import { CSSTransition } from "react-transition-group"
+import consumer from '../../consumer';
 
 
 class ChannelsIndex extends React.Component {
@@ -14,6 +15,7 @@ class ChannelsIndex extends React.Component {
             serverSettings: false,
             confirm: false,
             error: false,
+            user: ""
         }
 
         this.showModal = this.showModal.bind(this)
@@ -27,10 +29,40 @@ class ChannelsIndex extends React.Component {
         this.leaveServer = this.leaveServer.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.createDm = this.createDm.bind(this)
+        this.subscription = null
     }
 
     componentDidMount(){
         this.props.fetchUserServers(this.props.currentUserId)
+        this.subscribe()
+    }
+
+    componentDidUpdate(prevProps){
+        // if(prevProps.channelId !== this.props.channelId){
+        //     this.subscription.unsubscribe()
+        //     this.subscribe();
+        // }
+    }
+
+    componentWillUnmount() {
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+        }
+    }
+
+    subscribe() {
+        const userId = this.props.currentUserId  
+
+        this.subscription = consumer.subscriptions.create(
+          { channel: 'UserChannel', id: this.state.user },
+          {
+            received: data => {
+                console.log('in received');
+                this.props.fetchDmChannels()
+                // this.props.fetchMessages(this.props.channelId)
+            }
+          }
+        )
     }
     
 
@@ -43,18 +75,24 @@ class ChannelsIndex extends React.Component {
 
     createDm(userId){
         return e => {
+            this.setState({ user: userId})
             let {dmChannels} = this.props
             let dmIndex = dmChannels.findIndex(ele => ele.user_1.id === userId || ele.user_2.id === userId )
             if(dmIndex !== -1){
                 this.props.history.push(`/channel/@me/${dmChannels[dmIndex].id}`)
-            }else {
+            } else {
                 
                 let dmChannel = {
                     user1_id: this.props.currentUserId,
                     user2_id: userId
                 }
                 this.props.createDmChannel(dmChannel)
-                this.props.fetchDmChannels(this.props.currentUserId)
+                this.subscription.send({
+                    dmChannel: {
+                        user1_id: this.props.currentUserId,
+                        user2_id: userId
+                    }
+                })
                 this.props.history.push('/channel/@me')  
             }
             
