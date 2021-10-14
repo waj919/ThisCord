@@ -2,6 +2,12 @@
 
 ThisCord is a clone of Discord, a social website that allows a user to talk over live text. Users have the ability to create or join servers as well as create channels to message each other!
 
+![thiscord_home](https://user-images.githubusercontent.com/85583728/137260451-6eee6a5a-ac3f-4cbb-a47d-c3ad2d913e75.png)
+
+![thiscord_channel](https://user-images.githubusercontent.com/85583728/137260463-be37a0fc-5918-4b3e-9244-61adecf5fe36.png)
+
+![thiscord_delete](https://user-images.githubusercontent.com/85583728/137260489-3038db28-88df-4096-94e4-ae5028a68fc4.png)
+
 ## Features
 
 * Each users is able to direct message another user and figuring out how to get that to work while still having the "/@me" that discord has and getting the direct messages to appear was a challenge. My solution to this was creating a new table in my database just for direct message channels. This way I could still have the "/@me" without having any unecessary id's in my url path. Each direct message channel is a channel on its own and does not have any server id associated with it.
